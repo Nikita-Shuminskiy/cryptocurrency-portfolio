@@ -1,0 +1,9 @@
+.table {
+  background: rgb(236, 239, 241);
+  width: 90%;
+  height: auto;
+  &-container {
+    display: flex;
+    justify-content: center;
+  }
+}
