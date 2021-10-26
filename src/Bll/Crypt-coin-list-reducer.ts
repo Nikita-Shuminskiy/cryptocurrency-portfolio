@@ -1,4 +1,5 @@
-import { api, CryptocurrencyListType, DataChartType, DataqwqeRType } from '../Dal/Api';
+import { api } from '../Dal/Api';
+import { CryptocurrencyListType, DataChartType } from '../Dal/types';
 import { ActionsTypes, AppThunk } from '../Store/Store';
 
 const initialState = {
@@ -12,26 +13,28 @@ export const cryptocurrencyReducer = (state = initialState, action: ActionsTypes
     switch (action.type) {
         case 'CRYPT/SET-CURRENT-ASSETS':
             return {...state, dataAssets: action.data, timestamp: action.timestamp}
-        case 'CRYPT/SET-DATA-ASENT':
+        case 'CRYPT/SET-DATA-CHART':
             return {...state, chartData: action.data}
         default: {
             return state
         }
     }
 }
+//action
 export const setDataAssets = (data: CryptocurrencyListType[], timestamp: number) => {
     return {type: 'CRYPT/SET-CURRENT-ASSETS', data, timestamp} as const
 }
 export const setDataChart = (data: DataChartType[]) => {
-    return {type: 'CRYPT/SET-DATA-ASENT', data} as const
+    return {type: 'CRYPT/SET-DATA-CHART', data} as const
 }
+//thunk
 export const getDataAssetsTC = (): AppThunk => (dispatch) => {
     api.getAssets()
         .then((res) => {
             const {data, timestamp} = res.data
             dispatch(setDataAssets(data, timestamp))
         }).catch((error) => {
-        alert(error)
+        console.log(error)
     })
 }
 export const getChartDataTC = (id:string): AppThunk => (dispatch) => {
@@ -40,7 +43,7 @@ export const getChartDataTC = (id:string): AppThunk => (dispatch) => {
             const {data} = res.data
             dispatch(setDataChart(data))
         }).catch((error) => {
-        alert(error)
+        console.log(error)
     })
 }
 //types

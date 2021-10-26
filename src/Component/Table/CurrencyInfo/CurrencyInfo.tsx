@@ -1,17 +1,17 @@
 import React from 'react';
-import './Portfolio.scss'
+import { Charts } from '../../Common/Chart/Chart';
 import { useHistory } from 'react-router-dom';
 
-export const Portfolio = () => {
+export const CurrencyInfo = () => {
     const history = useHistory();
-     const goBackHandler = () => {
+    const goBackHandler = () => {
         history.goBack()
     }
     return (
         <div>
             <button onClick={goBackHandler} type="button" className="btn btn-outline-primary">Go back</button>
-            <button type="button" className="btn btn-outline-secondary">Update currencies</button>
-
+          <Charts />
         </div>
     );
 };
+

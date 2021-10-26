@@ -16,6 +16,8 @@ export type ActionsTypes =
     | ReturnType<typeof setDataChart>
 export type AppStateType = ReturnType<typeof rootReducer>
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, AppStateType, unknown, ActionsTypes>
+
+
 // @ts-ignore
 window.store = store
 

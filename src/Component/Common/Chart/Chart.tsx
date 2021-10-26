@@ -5,15 +5,16 @@ import './Chart.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { getChartDataTC } from '../../../Bll/Crypt-coin-list-reducer';
 import { AppStateType } from '../../../Store/Store';
-import { DataChartType } from '../../../Dal/Api';
+import { DataChartType } from '../../../Dal/types';
+import { useParams } from 'react-router-dom';
 
 export type ChartsType = {
-    id:string
+
 }
 
-export const Charts = ({id}:ChartsType) => {
+export const Charts = ({}:ChartsType) => {
+    const {id} = useParams<{id: string}>();
     const data = useSelector<AppStateType, DataChartType[] | null>(state => state.cryptocurrencyList.chartData)
-    console.log(data)
     const dispatch = useDispatch()
     const options = {
         series: [{
@@ -22,7 +23,7 @@ export const Charts = ({id}:ChartsType) => {
         }]
     }
     useEffect(()=> {
-        dispatch(getChartDataTC(id))
+        dispatch(getChartDataTC(id.slice(1)))
     },[dispatch])
     return (<HighchartsReact containerProps={{style: {height: 'auto', position: 'relative', width: '900px'}}}
                              highcharts={Highcharts}

@@ -1,38 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './Table.scss'
-import { Charts } from '../Common/Chart/Chart';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDataAssetsTC } from '../../Bll/Crypt-coin-list-reducer';
 import { AppStateType } from '../../Store/Store';
-import { CryptocurrencyListType } from '../../Dal/Api';
+import { CryptocurrencyListType } from '../../Dal/types';
+import { Assets } from './Asset/Assets';
 
 export const Table = () => {
-    const dataAssets = useSelector<AppStateType, CryptocurrencyListType[] | null>((state) => state.cryptocurrencyList.dataAssets)
+    const dataAssets = useSelector<AppStateType, CryptocurrencyListType[] | null>
+    ((state) => state.cryptocurrencyList.dataAssets)
     const dispatch = useDispatch()
-    const [chartOpen, setOpenChart] = useState<Array<string>>([])
-    const openChartHandler = (id: string) => {
-        if (chartOpen.includes(id)) {
-            setOpenChart(chartOpen.filter(idChart => idChart !== id))
-        } else {
-            setOpenChart([...chartOpen, id])
-        }
-    }
-    const cryptocurrencyList = dataAssets && dataAssets.map((item) => {
-        return (<tr key={item.id} onClick={() => openChartHandler(item.id)}>
-            <td>{item.rank}</td>
-            <td>{item.name}</td>
-            <td>${(+item.priceUsd).toFixed(2)}</td>
-            <td>${Math.round(+item.marketCapUsd)}</td>
-            <td>${Math.round(+item.vwap24Hr)}</td>
-            <td>{Math.round(+item.supply)}m</td>
-            <td>{Math.round(+item.volumeUsd24Hr)}</td>
-            <td>{item.changePercent24Hr}%</td>
-            {chartOpen.some(id => id === item.id) && <div style={{width: '500px', height: 'auto'}}><Charts id={item.id}/></div>}
-        </tr>)
-    })
+
     useEffect(() => {
         dispatch(getDataAssetsTC())
     }, [dispatch])
+
+
     return (<div className={'table-container'}>
             <table className="table">
                 <thead>
@@ -48,7 +31,9 @@ export const Table = () => {
                 </tr>
                 </thead>
                 <tbody>
-                {cryptocurrencyList}
+                {dataAssets && dataAssets.map((item) => {
+                    return (<Assets key={item.id} item={item}/>)
+                })}
                 </tbody>
             </table>
         </div>
