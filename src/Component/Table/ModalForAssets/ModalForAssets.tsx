@@ -27,7 +27,7 @@ export const ModalForAssets = (props: ModalForAssetsType) => {
                     Do you want to add <strong>{props.assets.name}</strong> to your portfolio
                 </div>
                 <div>
-                    <input value={assetsCount} onChange={onChangeAssets}/>
+                    <input type={'number'} value={assetsCount} onChange={onChangeAssets}/>
                 </div>
             </Modal.Body>
             <Modal.Footer>

@@ -1,7 +1,7 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import ThunkMiddleware, { ThunkAction } from 'redux-thunk'
 import { cryptocurrencyReducer, setDataAssets, setDataChart, setTopDataAssets } from '../Bll/Crypt-coin-list-reducer';
-import { addAsset, portfolioReducer, setAssets, setPercent } from '../Bll/Portfolio-reducer';
+import { addAsset, portfolioReducer, removeAssetPortfolio, setAssets, setPercent } from '../Bll/Portfolio-reducer';
 import { appReducer, RequestStatusType, setAppError, setAppStatus } from '../Bll/App-reducer';
 import { Dispatch } from 'react';
 import { AddAssetType, CryptocurrencyListType, DataChartType } from '../Dal/Types';
@@ -30,7 +30,6 @@ const parsedValue = persistedCounterString && JSON.parse(persistedCounterString)
             status: 'loading' as RequestStatusType,
             error: null as string | null
         }
-
 }
 export const store = createStore(rootReducer,preloadedState, applyMiddleware(ThunkMiddleware))
 
@@ -47,6 +46,7 @@ export type ActionsTypes =
     | ReturnType<typeof addAsset>
     | ReturnType<typeof setAssets>
     | ReturnType<typeof setPercent>
+    | ReturnType<typeof removeAssetPortfolio>
 
 export type AppStateType = ReturnType<typeof rootReducer>
 export type AppDispatchType = Dispatch<ActionsTypes>

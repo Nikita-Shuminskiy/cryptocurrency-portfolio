@@ -8,7 +8,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import { CurrencyInfo } from './Component/Table/CurrencyInfo/CurrencyInfo';
 
 
-function App() {
+const App = () => {
     return (
         <div className="App">
             <Header/>

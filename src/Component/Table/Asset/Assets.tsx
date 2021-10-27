@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { CryptocurrencyListType } from '../../../Dal/Types';
 import { useHistory } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { ModalForAssets } from '../ModalForAssets/ModalForAssets';
-import { addAssetTC } from '../../../Bll/Portfolio-reducer';
+import { addAsset, setPercent } from '../../../Bll/Portfolio-reducer';
 
 type AssetsType = {
     item: CryptocurrencyListType
@@ -21,9 +21,11 @@ export const Assets = React.memo(({item}: AssetsType) => {
     const addAssetsHandler = (assetsCount:string) => {
         const newAccount = {
             assetId: item.id,
-            count:assetsCount
+            count:assetsCount,
+            price:item.priceUsd
         }
-        dispatch(addAssetTC(newAccount))
+        dispatch( addAsset(newAccount))
+        dispatch( setPercent(+newAccount.price))
         setShowModal(!showModal)
 
     }

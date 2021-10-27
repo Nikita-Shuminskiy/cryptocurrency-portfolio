@@ -24,6 +24,7 @@ export type AssetsType = {
     timestamp: number
 }
 export type AddAssetType = {
-    assetId: string ,
-    count: string
+    assetId: string,
+    count: string,
+    price: string,
 }
