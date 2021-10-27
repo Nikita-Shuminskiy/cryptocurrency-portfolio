@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AssetsType, DataHistoryAssetsType } from './types';
+import { AssetsType, DataHistoryAssetsType } from './Types';
 
 const createInstance = axios.create({
     baseURL: 'https://api.coincap.io/v2/',

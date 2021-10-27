@@ -1,0 +1,19 @@
+.paginator {
+	margin: 10px;
+	&__totalCount{
+		color: darkred;
+		font-weight: bold;
+		font-size: 20px;
+	}
+	&__pageNumber{
+		padding: 2px;
+		border: 1px solid darkgrey;
+		font-weight: bolder;
+	}
+	&__selectedPage{
+		border-color: blue;
+		font-weight: bolder;
+		color: red;
+	}
+}
+

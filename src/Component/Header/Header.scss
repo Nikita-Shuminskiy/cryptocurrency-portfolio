@@ -1,15 +1,25 @@
 .header {
   width: 100%;
-  height: auto;
   background: linear-gradient(to right, rgb(63, 81, 181), rgb(100, 181, 246)) rgb(255, 255, 255) !important;
   margin-bottom: 50px;
-  .header-link-portfolio {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  align-items: center;
+  &__blockAssets {
+    p {
+      color: white;
+      font-weight: bold;
+      font-family: "Dosis", Arial, Helvetica, sans-serif;
+    }
+  }
+  &__link {
     color: white;
     text-decoration: none;
     font-weight: bold;
     font-size: 20px;
-  }
-  a:active{
-    color: red;
+    &:active{
+      color: red;
+    }
   }
 }

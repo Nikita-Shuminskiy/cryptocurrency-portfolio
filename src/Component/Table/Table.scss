@@ -1,9 +1,10 @@
 .table {
-  background: rgb(236, 239, 241);
-  width: 90%;
-  height: auto;
-  &-container {
-    display: flex;
-    justify-content: center;
+  background: rgba(170, 172, 174, 0.51);
+  margin: 0 auto;
+  text-align: center;
+  &__block{
+      &__blockHead{}
+    }
+  &__body{}
   }
-}
+

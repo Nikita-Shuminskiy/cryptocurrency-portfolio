@@ -23,3 +23,7 @@ export type AssetsType = {
     data: CryptocurrencyListType[]
     timestamp: number
 }
+export type AddAssetType = {
+    assetId: string ,
+    count: string
+}
