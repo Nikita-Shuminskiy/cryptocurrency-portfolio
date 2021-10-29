@@ -25,6 +25,6 @@ export type AssetsType = {
 }
 export type AddAssetType = {
     assetId: string,
-    count: string,
-    price: string,
+    count: number,
+    price: number,
 }

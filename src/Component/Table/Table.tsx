@@ -7,25 +7,20 @@ import { CryptocurrencyListType } from '../../Dal/Types';
 import { Assets } from './Asset/Assets';
 import { RequestStatusType } from '../../Bll/App-reducer';
 import { Preloader } from '../Common/Preloader/Preloader';
-import { AlertError } from '../Common/AlertError/AlertError';
 import { Paginator } from '../Common/Paginator/Paginator';
-import { ModalForAssets } from './ModalForAssets/ModalForAssets';
+import { AlertError } from '../Common/AlertError/AlertError';
 
 export const Table = () => {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getDataAssetsTC())
     }, [dispatch])
-
     const dataAssets = useSelector<AppStateType, CryptocurrencyListType[]>
     ((state) => state.cryptocurrencyList.dataAssets)
-    const status = useSelector<AppStateType, RequestStatusType>
-    ((state) => state.app.status)
-    const error = useSelector<AppStateType, null | string>
-    ((state) => state.app.error)
-
-
     const [currentPage, setCurrentPages] = useState(1)
+    const status = useSelector<AppStateType, RequestStatusType>(state => state.app.status)
+
+
     const totalCount = dataAssets.length
     const onPageChange = (page: number) => {
         setCurrentPages(page)
@@ -33,32 +28,21 @@ export const Table = () => {
     const pageSize = 10
     const lastCurrentsPage = currentPage * pageSize
     const firstCurrentPage = lastCurrentsPage - pageSize
-    const currentElements = dataAssets.slice(firstCurrentPage,lastCurrentsPage)
+    const currentElements = dataAssets.slice(firstCurrentPage, lastCurrentsPage)
 
-    return (<table className="table">
-            <thead className="table__block">
-            <tr className="table__blockHead">
-                <th scope="col">Rank</th>
-                <th scope="col">Name</th>
-                <th scope="col">Price</th>
-                <th scope="col">Market Cap</th>
-                <th scope="col">VWAP(24Hr)</th>
-                <th scope="col">Supply</th>
-                <th scope="col">Volume(24Hr)</th>
-                <th scope="col">Change(24Hr)</th>
-            </tr>
-            </thead>
-            <tbody className="table__body">
-            {status === 'loading' && <Preloader/>}
-            {error && <AlertError error={error}/>}
-            {
-                currentElements.map((i)=> {
-                    return <Assets key={i.id} item={i}/>
-                })
-            }
-            <Paginator onPageChange={onPageChange} totalCount={totalCount} pageSize={pageSize} currentPage={currentPage}/>
-            </tbody>
-
-        </table>
-    );
-};
+    return <div className="main">
+        <Paginator onPageChange={onPageChange} totalCount={totalCount} pageSize={pageSize}
+                   currentPage={currentPage}/>
+        {status === 'failed' && <AlertError/>}
+        <div className="main__header">
+            <p className="main__header-text">Rank</p>
+            <p className="main__header-text">Rank</p>
+            <p className="main__header-text">Price</p>
+        </div>
+        {
+            status === 'loading' ? <Preloader/> : currentElements.map((i) => {
+                return <Assets key={i.id} item={i}/>
+            })
+        }
+    </div>
+}

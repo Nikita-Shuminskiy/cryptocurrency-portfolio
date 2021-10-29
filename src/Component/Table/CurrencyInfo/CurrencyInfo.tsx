@@ -4,6 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppStateType } from '../../../Store/Store';
 import { CryptocurrencyInitType, getChartDataTC } from '../../../Bll/Crypt-coin-list-reducer';
+import './CurrencyInfo.scss'
 
 export const CurrencyInfo = () => {
     const {id} = useParams<{ id: string }>();
@@ -15,13 +16,13 @@ export const CurrencyInfo = () => {
     }
     useEffect(() => {
         dispatch(getChartDataTC(id))
-    }, [dispatch])
+    }, [dispatch, id])
     return (
         <div>
             <button onClick={goBackHandler} type="button" className="btn btn-outline-primary">Go back</button>
-            <table className="table table-striped">
+            <table className="table table-hover table-sm">
                 <thead>
-                <tr>
+                <tr className="table-primary">
                     <th scope="col">Rank</th>
                     <th scope="col">Name</th>
                     <th scope="col">Price</th>
@@ -35,11 +36,15 @@ export const CurrencyInfo = () => {
                 <tbody>
                 {
                     data.dataAssets.filter(i => i.id === id).map((i) => {
-                            return <tr>
-                                <th scope="row">{i.name}</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
+                            return <tr key={i.id}>
+                                <td scope="row">{i.rank}</td>
+                                <td>{i.name}</td>
+                                <td>${(+i.priceUsd).toFixed(5)}</td>
+                                <td>${(+i.marketCapUsd).toFixed(5)}</td>
+                                <td>${(+i.vwap24Hr).toFixed(2)}</td>
+                                <td>{(+i.supply).toFixed(5)}B</td>
+                                <td>{(+i.volumeUsd24Hr).toFixed(5)}B</td>
+                                <td>{(+i.changePercent24Hr).toFixed(2)}%</td>
                             </tr>
                     })
                 }
@@ -49,4 +54,5 @@ export const CurrencyInfo = () => {
         </div>
     );
 };
+
 

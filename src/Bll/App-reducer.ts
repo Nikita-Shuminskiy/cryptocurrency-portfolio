@@ -2,11 +2,11 @@ import { ActionsTypes } from '../Store/Store';
 
 
 
-const initialState = {
+const initialState  = {
     status: 'loading' as RequestStatusType,
     error: null as string | null,
 }
-export const appReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
+export const appReducer = (state = initialState , action: ActionsTypes): InitialStateType => {
     switch (action.type) {
         case 'APP/SET-APP-STATUS':
             return {...state, status: action.status}
@@ -25,4 +25,5 @@ export const setAppError = (error:string | null) => {
 }
 
 export type RequestStatusType = 'loading' | 'succeeded' | 'failed'
+
 type InitialStateType = typeof initialState

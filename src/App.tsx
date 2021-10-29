@@ -9,17 +9,18 @@ import { CurrencyInfo } from './Component/Table/CurrencyInfo/CurrencyInfo';
 
 
 const App = () => {
+
     return (
-        <div className="App">
+        <div className="container">
             <Header/>
-           <Route>
-               <Switch>
-                   <Route exact path={'/'} render={() =>   <Redirect to={'/table'} />}/>
-                   <Route path={'/portfolio'} render={() => <Portfolio/>}/>
-                   <Route path={'/table'} render={() => <Table/>}/>
-                   <Route path={'/currency-info/:id'} render={() => <CurrencyInfo/>}/>
-               </Switch>
-           </Route>
+                <Route>
+                    <Switch>
+                        <Route exact path={'/'} render={() => <Redirect to={'/table'}/>}/>
+                        <Route path={'/portfolio'} render={() => <Portfolio/>}/>
+                        <Route path={'/table'} render={() => <Table/>}/>
+                        <Route path={'/currency-info/:id'} render={() => <CurrencyInfo/>}/>
+                    </Switch>
+                </Route>
         </div>
     );
 }

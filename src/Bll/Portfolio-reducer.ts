@@ -1,36 +1,45 @@
 import { AddAssetType } from '../Dal/Types';
-import { ActionsTypes, AppDispatchType } from '../Store/Store';
+import { ActionsTypes } from '../Store/Store';
 
 
 const initialState = {
     portfolio: [] as AddAssetType[],
-    percent: 0
+    percent: 0,
+    currentAssetSessions: 0
 }
 
 export const portfolioReducer = (state = initialState, action: ActionsTypes): PortfolioInitType => {
     switch (action.type) {
         case 'PORTFOLIO/SET-ASSETS':
-            return {...state, portfolio: [...state.portfolio, action.assets]}
+            return {...state, portfolio: [...state.portfolio, ...action.assets]}
         case 'PORTFOLIO/ADD-ASSET':
+            const currentAssetSession  = state.portfolio.reduce((acc, curr) =>
+                acc + curr.price,0)
             const asset = state.portfolio.find(item => item.assetId === action.asset.assetId)
             if (asset) {
                 state.portfolio.forEach(item => {
                     if (item.assetId === action.asset.assetId) {
-                        item.count = String(Number(item.count) + Number(action.asset.count))
-                        item.price = String(Number(item.price) + Number(action.asset.price))
+                        item.count = item.count + action.asset.count
+                        item.price = item.price + action.asset.price
                     }
                 })
-                return {...state, portfolio: [...state.portfolio]}
+                return {...state,currentAssetSessions: state.currentAssetSessions + currentAssetSession,
+                    percent: action.asset.price * 100 /  currentAssetSession,
+                    portfolio: [...state.portfolio]}
             }
-            return {...state, portfolio: [...state.portfolio, action.asset]}
-        case 'PORTFOLIO/SET-PERCENT':
-            const copyState = {...state}
-            const differenceCostInitial  = copyState.portfolio.reduce((acc, curr) =>
-                acc + Number(curr.price),0)
-            return {...state, percent: Number(action.percent) * 100 /  differenceCostInitial }
+            return {...state, currentAssetSessions: state.currentAssetSessions + action.asset.price,
+                percent: action.asset.price * 100 /  action.asset.price, portfolio: [...state.portfolio, action.asset]}
+        case 'PORTFOLIO/UPDATE-PERCENT':{
+            const currentAssetSession  = state.portfolio.reduce((acc, curr) =>
+                acc + curr.price,0)
+            return {...state, currentAssetSessions: state.currentAssetSessions - action.asset.price , percent: action.asset.price * 100 /  currentAssetSession}
+        }
         case 'PORTFOLIO/REMOVE-ASSET':
-            return {...state, portfolio: state.portfolio.filter((assets) => {
-                    return assets.assetId !== action.assetId
+            return {...state, portfolio: state.portfolio.map((element) => {
+                    if (element.assetId === action.asset.assetId){
+                        return {...element, count: element.count - action.asset.count, price: element.price - action.asset.price}
+                    }
+                    return element
                 })}
         default: {
             return state
@@ -40,26 +49,17 @@ export const portfolioReducer = (state = initialState, action: ActionsTypes): Po
 export const addAsset = (asset: AddAssetType) => {
     return {type: 'PORTFOLIO/ADD-ASSET', asset} as const
 }
-export const setAssets = (assets: AddAssetType) => {
+export const updateCurrAssetPercent = (asset: AddAssetType) => {
+    return {type: 'PORTFOLIO/UPDATE-PERCENT', asset} as const
+}
+export const setAssets = (assets: AddAssetType[]) => {
     return {type: 'PORTFOLIO/SET-ASSETS', assets} as const
 }
-export const setPercent = (percent: number) => {
-    return {type: 'PORTFOLIO/SET-PERCENT', percent} as const
-}
-export const removeAssetPortfolio = (assetId: string) => {
-    return {type: 'PORTFOLIO/REMOVE-ASSET', assetId} as const
-}
-export const getPortfolioInLocalStorageTC = () => (dispatch: AppDispatchType) => {
-    const portfolio = localStorage.getItem('portfolioAssets')
-    if (portfolio) {
-        dispatch(addAsset(JSON.parse(portfolio)))
-    }
+export const removeAssetPortfolio = (asset: AddAssetType) => {
+    return {type: 'PORTFOLIO/REMOVE-ASSET', asset} as const
 }
 
 
 //types
-export type PortfolioInitType = {
-    portfolio: AddAssetType[]
-    percent: number
-}
+export type PortfolioInitType = typeof initialState
 

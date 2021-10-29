@@ -1,10 +1,12 @@
-.table {
-  background: rgba(170, 172, 174, 0.51);
-  margin: 0 auto;
+.main {
   text-align: center;
-  &__block{
-      &__blockHead{}
+  &__header{
+  display: grid;
+    grid-template-columns: repeat(5,1fr);
+    justify-items: center;
+    &-text{
+      color: black;
+      font-weight: bold;
     }
-  &__body{}
   }
-
+}

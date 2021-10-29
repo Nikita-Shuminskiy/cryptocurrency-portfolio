@@ -4,7 +4,8 @@ import { useHistory } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { ModalForAssets } from '../ModalForAssets/ModalForAssets';
-import { addAsset, setPercent } from '../../../Bll/Portfolio-reducer';
+import { addAsset } from '../../../Bll/Portfolio-reducer';
+import './Assets.scss'
 
 type AssetsType = {
     item: CryptocurrencyListType
@@ -14,41 +15,34 @@ export const Assets = React.memo(({item}: AssetsType) => {
     const dispatch = useDispatch()
     const history = useHistory();
 
-
-    const openMoreInfo = (id:string) => {
+    const openMoreInfo = (id: string) => {
         return history.push(`/currency-info/${id}`)
     }
-    const addAssetsHandler = (assetsCount:string) => {
+    const addAssetsHandler = (assetsCount: number) => {
         const newAccount = {
             assetId: item.id,
-            count:assetsCount,
-            price:item.priceUsd
+            count: assetsCount,
+            price: Number(item.priceUsd) * assetsCount
         }
-        dispatch( addAsset(newAccount))
-        dispatch( setPercent(+newAccount.price))
+        dispatch(addAsset(newAccount))
         setShowModal(!showModal)
-
     }
-    const openModalHandler = () => {
+    const openModalPortfoliolHandler = () => {
         setShowModal(true)
     }
 
-    return (
-        <>
-            <Button onClick={() => openMoreInfo(item.id)} variant="primary">More info</Button>
-            <Button onClick={openModalHandler} variant="success">+</Button>
-            {showModal &&  <ModalForAssets assets={item} addAssetsHandler={addAssetsHandler} showModal={setShowModal}  />}
-            <tr key={item.id}>
-                <td>{item.rank}</td>
-                <td>{item.name}</td>
-                <td>${(+item.priceUsd).toFixed(2)}</td>
-                <td>${Math.round(+item.marketCapUsd)}</td>
-                <td>${(+item.vwap24Hr).toFixed(2)}</td>
-                <td>{Math.round(+item.supply)}m</td>
-                <td>{(+item.volumeUsd24Hr).toFixed(2)}%</td>
-                <td>{(+item.changePercent24Hr).toFixed(2)}%</td>
-            </tr>
-        </>
+
+    return (<div className="main__body">
+            {showModal && <ModalForAssets assets={item} addAssetsHandler={addAssetsHandler} showModal={setShowModal}/>}
+            <div className="main__body__block">
+                <p>{item.rank}</p>
+                <p>{item.name}</p>
+                <p>${(+item.priceUsd).toFixed(2)}</p>
+                <Button className="block_btn" onClick={() => openMoreInfo(item.id)} variant="outline-primary">More
+                    info</Button>
+                <Button className="block_btn" onClick={openModalPortfoliolHandler} variant="outline-primary">Buy currency</Button>
+            </div>
+        </div>
     );
 })
 

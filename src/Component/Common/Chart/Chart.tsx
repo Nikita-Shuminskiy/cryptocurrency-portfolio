@@ -11,10 +11,9 @@ export type ChartsType = {
 
 export const Charts = ({data}: ChartsType) => {
     const options = {
-
         series: [{
             type: 'area',
-            data: data && data.map(i => +i.priceUsd)
+            data: data && data.map(item => +item.priceUsd)
         }]
     }
     return (<HighchartsReact

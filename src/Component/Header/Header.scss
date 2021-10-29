@@ -1,18 +1,25 @@
 .header {
-  width: 100%;
-  background: linear-gradient(to right, rgb(63, 81, 181), rgb(100, 181, 246)) rgb(255, 255, 255) !important;
-  margin-bottom: 50px;
+  background: linear-gradient(to right, rgb(63, 81, 181), rgb(100, 181, 246)) rgb(255, 255, 255);
   display: flex;
   justify-content: space-around;
   text-align: center;
   align-items: center;
-  &__blockAssets {
-    p {
+  &__assets {
+   &-text {
       color: white;
       font-weight: bold;
-      font-family: "Dosis", Arial, Helvetica, sans-serif;
     }
   }
+ &__totalCounts{
+   display: inline-block;
+   justify-content: flex-end;
+   flex-direction: column;
+   flex-wrap: nowrap;
+   &-text{
+     color: white;
+     font-weight: bold;
+   }
+ }
   &__link {
     color: white;
     text-decoration: none;

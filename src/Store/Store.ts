@@ -1,10 +1,16 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import ThunkMiddleware, { ThunkAction } from 'redux-thunk'
 import { cryptocurrencyReducer, setDataAssets, setDataChart, setTopDataAssets } from '../Bll/Crypt-coin-list-reducer';
-import { addAsset, portfolioReducer, removeAssetPortfolio, setAssets, setPercent } from '../Bll/Portfolio-reducer';
-import { appReducer, RequestStatusType, setAppError, setAppStatus } from '../Bll/App-reducer';
+import {
+    addAsset,
+    portfolioReducer,
+    removeAssetPortfolio,
+    setAssets,
+    updateCurrAssetPercent
+} from '../Bll/Portfolio-reducer';
+import { appReducer, setAppError, setAppStatus } from '../Bll/App-reducer';
 import { Dispatch } from 'react';
-import { AddAssetType, CryptocurrencyListType, DataChartType } from '../Dal/Types';
+import { loadState, saveState } from '../Component/Common/Utils/localstorage-utils';
 
 const rootReducer = combineReducers({
     cryptocurrencyList: cryptocurrencyReducer,
@@ -12,30 +18,16 @@ const rootReducer = combineReducers({
     app: appReducer,
 })
 
-let preloadedState;
-const persistedCounterString = localStorage.getItem("portfolioAssets")
-const parsedValue = persistedCounterString && JSON.parse(persistedCounterString);
-    preloadedState = {
-        cryptocurrencyList: {
-        dataAssets: [] as CryptocurrencyListType[],
-            timestamp: null as number | null,
-            chartData: [] as DataChartType[],
-            topAssets: [] as CryptocurrencyListType[]
-    },
-        portfolio: {
-            portfolio: parsedValue ? parsedValue : [],
-            percent: 0 as number
-        },
-        app: {
-            status: 'loading' as RequestStatusType,
-            error: null as string | null
-        }
-}
-export const store = createStore(rootReducer,preloadedState, applyMiddleware(ThunkMiddleware))
+export const store = createStore(rootReducer, loadState(), applyMiddleware(ThunkMiddleware))
 
 store.subscribe(() => {
-    localStorage.setItem("portfolioAssets", JSON.stringify(store.getState().portfolio.portfolio))
+    saveState({
+        ...store.getState(),
+        portfolio: store.getState().portfolio,
+    })
 })
+
+
 //type
 export type ActionsTypes =
     | ReturnType<typeof setDataAssets>
@@ -44,9 +36,9 @@ export type ActionsTypes =
     | ReturnType<typeof setAppStatus>
     | ReturnType<typeof setAppError>
     | ReturnType<typeof addAsset>
-    | ReturnType<typeof setAssets>
-    | ReturnType<typeof setPercent>
     | ReturnType<typeof removeAssetPortfolio>
+    | ReturnType<typeof setAssets>
+    | ReturnType<typeof updateCurrAssetPercent>
 
 export type AppStateType = ReturnType<typeof rootReducer>
 export type AppDispatchType = Dispatch<ActionsTypes>
