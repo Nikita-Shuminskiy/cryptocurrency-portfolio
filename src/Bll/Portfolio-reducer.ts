@@ -40,7 +40,9 @@ export const portfolioReducer = (state = initialState, action: ActionsTypes): Po
                         return {...element, count: element.count - action.asset.count, price: element.price - action.asset.price}
                     }
                     return element
-                })}
+                })
+
+            }
         default: {
             return state
         }

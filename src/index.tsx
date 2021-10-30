@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -9,11 +9,11 @@ import { store } from './Store/Store';
 
 ReactDOM.render(
   <React.StrictMode>
-   <BrowserRouter>
+   <HashRouter>
      <Provider store={store}>
          <App />
      </Provider>
-   </BrowserRouter>
+   </HashRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

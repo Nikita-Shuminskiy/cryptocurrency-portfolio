@@ -26,11 +26,14 @@
     "typescript": "^4.4.4",
     "web-vitals": "^1.0.1"
   },
+  "homepage": "https://nick-gansta.github.io/cryptocurrency-portfolio/" ,
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -51,6 +54,7 @@
     ]
   },
   "devDependencies": {
+    "gh-pages": "^3.2.3",
     "sass": "^1.43.3"
   }
 }

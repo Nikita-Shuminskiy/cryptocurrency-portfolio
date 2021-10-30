@@ -34,13 +34,14 @@ export const Wallet = ({asset,currentAssets}: WalletType) => {
                 count:Number(countDelete),
                 price: Number(assetValue.priceUsd) * Number(countDelete)
             }
+            if (asset.count < assetRemove.count) return
             dispatch(updateCurrAssetPercent(assetRemove))
-             dispatch(removeAssetPortfolio(assetRemove))
+            dispatch(removeAssetPortfolio(assetRemove))
 
         }
         setChangeAsset(false)
     }
-/*    !(count.count - assetRemove.count ) &&*/
+
     const changeAssetHandler = () => setChangeAsset(!changeAsset)
 
     return <div className="wallet">

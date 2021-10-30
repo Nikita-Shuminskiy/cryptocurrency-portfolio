@@ -18,7 +18,7 @@ export const Portfolio = () => {
             <button onClick={goBackHandler} type="button" className="btn btn-outline-primary">Go back</button>
         </Modal.Header>
         <Modal.Body>
-            {currentAssets.map((asset) => {
+            {currentAssets.filter(asset => asset.count !== 0).map((asset) => {
                 return <Wallet currentAssets={currentAssets} key={asset.assetId} asset={asset}/>
             })}
         </Modal.Body>

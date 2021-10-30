@@ -31,7 +31,6 @@ export const Assets = React.memo(({item}: AssetsType) => {
         setShowModal(true)
     }
 
-
     return (<div className="main__body">
             {showModal && <ModalForAssets assets={item} addAssetsHandler={addAssetsHandler} showModal={setShowModal}/>}
             <div className="main__body__block">
