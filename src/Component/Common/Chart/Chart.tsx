@@ -8,7 +8,7 @@ import { DataChartType } from '../../../Dal/Types';
 export type ChartsType = {
     data: DataChartType[]
 }
-
+/*const test = 'text'*/
 export const Charts = ({data}: ChartsType) => {
     const options = {
         series: [{
