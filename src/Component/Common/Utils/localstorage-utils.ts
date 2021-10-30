@@ -2,11 +2,9 @@ import { AppStateType } from '../../../Store/Store';
 import { AddAssetType } from '../../../Dal/Types';
 
 const checkingArrayAssets = (serializedState: string) => {
-    const parsedState:AppStateType = JSON.parse(serializedState);
-    const portfolio = parsedState.portfolio.portfolio.filter((asset:AddAssetType) =>  asset.count !== 0)
-
-debugger
-     return {...parsedState, portfolio: {...parsedState.portfolio, portfolio: portfolio} }
+    const parsedState: AppStateType = JSON.parse(serializedState);
+    const portfolio = parsedState.portfolio.portfolio.filter((asset: AddAssetType) => asset.count !== 0)
+    return {...parsedState, portfolio: {...parsedState.portfolio, portfolio: portfolio}}
 }
 
 export const loadState = () => {

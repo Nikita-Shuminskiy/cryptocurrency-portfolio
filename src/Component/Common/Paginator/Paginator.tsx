@@ -18,9 +18,10 @@ export const Paginator = (props: PaginatorType) => {
         {
             pages
                 .map(page => {
-                    return <span className={props.currentPage === page ? "paginator__selected" : "paginator__unselected"}
-                                 key={page}
-                                 onClick={() => props.onPageChange(page)}>
+                    return <span
+                        className={props.currentPage === page ? 'paginator__selected' : 'paginator__unselected'}
+                        key={page}
+                        onClick={() => props.onPageChange(page)}>
                        {page}
                    </span>
                 })}

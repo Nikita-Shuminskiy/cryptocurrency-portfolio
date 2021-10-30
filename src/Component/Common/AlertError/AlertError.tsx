@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Alert, Button } from 'react-bootstrap';
 import './AlertError.scss'
 
@@ -10,7 +10,7 @@ export const AlertError = (props:AlertErrorType ) => {
     const closeAlert = () => {
         setShow(false)
     }
-  /*  useEffect(() => {
+ /*   useEffect(() => {
         setTimeout(()=> {
             closeAlert()
         }, 3000)

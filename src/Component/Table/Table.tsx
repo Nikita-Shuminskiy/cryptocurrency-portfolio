@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './Table.scss'
 import { useDispatch, useSelector } from 'react-redux';
+import { Assets } from './Asset/Assets';
 import { getDataAssetsTC } from '../../Bll/Crypt-coin-list-reducer';
 import { AppStateType } from '../../Store/Store';
 import { CryptocurrencyListType } from '../../Dal/Types';
-import { Assets } from './Asset/Assets';
 import { RequestStatusType } from '../../Bll/App-reducer';
 import { Preloader } from '../Common/Preloader/Preloader';
 import { Paginator } from '../Common/Paginator/Paginator';
@@ -15,6 +15,7 @@ export const Table = () => {
     useEffect(() => {
         dispatch(getDataAssetsTC())
     }, [dispatch])
+
     const dataAssets = useSelector<AppStateType, CryptocurrencyListType[]>
     ((state) => state.cryptocurrencyList.dataAssets)
     const [currentPage, setCurrentPages] = useState(1)

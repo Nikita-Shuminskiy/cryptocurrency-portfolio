@@ -5,16 +5,16 @@ import { CryptocurrencyListType } from '../../../Dal/Types';
 type ModalForAssetsType = {
     assets: CryptocurrencyListType
     showModal: (show: boolean) => void
-    addAssetsHandler: (countAssets:number) => void
+    addAssetsHandler: (countAssets: number) => void
 }
 export const ModalForAssets = (props: ModalForAssetsType) => {
     const [assetsCount, setAssetsCount] = useState<string>('')
     const onChangeAssets = (e: ChangeEvent<HTMLInputElement>) => {
-        if (Number(e.currentTarget.value) > -1){
+        if (Number(e.currentTarget.value) > -1) {
             setAssetsCount(e.currentTarget.value)
         }
     }
-    const  onAddAssetsHandler = () => assetsCount &&  props.addAssetsHandler( Number(assetsCount))
+    const onAddAssetsHandler = () => assetsCount && props.addAssetsHandler(Number(assetsCount))
 
     return (<Modal show={true}>
             <Modal.Header>

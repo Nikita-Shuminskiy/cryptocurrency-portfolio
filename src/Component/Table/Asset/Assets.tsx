@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { CryptocurrencyListType } from '../../../Dal/Types';
 import { useHistory } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
+import './Assets.scss'
+import { CryptocurrencyListType } from '../../../Dal/Types';
 import { ModalForAssets } from '../ModalForAssets/ModalForAssets';
 import { addAsset } from '../../../Bll/Portfolio-reducer';
-import './Assets.scss'
+
 
 type AssetsType = {
     item: CryptocurrencyListType
@@ -39,7 +40,8 @@ export const Assets = React.memo(({item}: AssetsType) => {
                 <p>${(+item.priceUsd).toFixed(2)}</p>
                 <Button className="block_btn" onClick={() => openMoreInfo(item.id)} variant="outline-primary">More
                     info</Button>
-                <Button className="block_btn" onClick={openModalPortfoliolHandler} variant="outline-primary">Buy currency</Button>
+                <Button className="block_btn" onClick={openModalPortfoliolHandler} variant="outline-primary">Buy
+                    currency</Button>
             </div>
         </div>
     );

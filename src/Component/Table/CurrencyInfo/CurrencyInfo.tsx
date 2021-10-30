@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
-import { Charts } from '../../Common/Chart/Chart';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppStateType } from '../../../Store/Store';
-import { CryptocurrencyInitType, getChartDataTC } from '../../../Bll/Crypt-coin-list-reducer';
 import './CurrencyInfo.scss'
+import { AppStateType } from '../../../Store/Store';
+import { Charts } from '../../Common/Chart/Chart';
+import { CryptocurrencyInitType, getChartDataTC } from '../../../Bll/Crypt-coin-list-reducer';
+
 
 export const CurrencyInfo = () => {
     const {id} = useParams<{ id: string }>();
@@ -36,16 +37,16 @@ export const CurrencyInfo = () => {
                 <tbody>
                 {
                     data.dataAssets.filter(i => i.id === id).map((i) => {
-                            return <tr key={i.id}>
-                                <td scope="row">{i.rank}</td>
-                                <td>{i.name}</td>
-                                <td>${(+i.priceUsd).toFixed(5)}</td>
-                                <td>${(+i.marketCapUsd).toFixed(5)}</td>
-                                <td>${(+i.vwap24Hr).toFixed(2)}</td>
-                                <td>{(+i.supply).toFixed(5)}B</td>
-                                <td>{(+i.volumeUsd24Hr).toFixed(5)}B</td>
-                                <td>{(+i.changePercent24Hr).toFixed(2)}%</td>
-                            </tr>
+                        return <tr key={i.id}>
+                            <td scope="row">{i.rank}</td>
+                            <td>{i.name}</td>
+                            <td>${(+i.priceUsd).toFixed(5)}</td>
+                            <td>${(+i.marketCapUsd).toFixed(5)}</td>
+                            <td>${(+i.vwap24Hr).toFixed(2)}</td>
+                            <td>{(+i.supply).toFixed(5)}B</td>
+                            <td>{(+i.volumeUsd24Hr).toFixed(5)}B</td>
+                            <td>{(+i.changePercent24Hr).toFixed(2)}%</td>
+                        </tr>
                     })
                 }
                 </tbody>

@@ -1,4 +1,5 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux';
+import { Dispatch } from 'react';
 import ThunkMiddleware, { ThunkAction } from 'redux-thunk'
 import { cryptocurrencyReducer, setDataAssets, setDataChart, setTopDataAssets } from '../Bll/Crypt-coin-list-reducer';
 import {
@@ -9,7 +10,6 @@ import {
     updateCurrAssetPercent
 } from '../Bll/Portfolio-reducer';
 import { appReducer, setAppError, setAppStatus } from '../Bll/App-reducer';
-import { Dispatch } from 'react';
 import { loadState, saveState } from '../Component/Common/Utils/localstorage-utils';
 
 const rootReducer = combineReducers({
@@ -26,7 +26,6 @@ store.subscribe(() => {
         portfolio: store.getState().portfolio,
     })
 })
-
 
 //type
 export type ActionsTypes =
