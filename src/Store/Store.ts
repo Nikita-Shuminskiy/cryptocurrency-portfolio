@@ -22,7 +22,6 @@ export const store = createStore(rootReducer, loadState(), applyMiddleware(Thunk
 
 store.subscribe(() => {
     saveState({
-        ...store.getState(),
         portfolio: store.getState().portfolio,
     })
 })

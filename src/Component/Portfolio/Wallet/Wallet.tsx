@@ -8,15 +8,15 @@ import { AppStateType } from '../../../Store/Store';
 
 type WalletType = {
     asset: AddAssetType
-    currentAssets:AddAssetType[]
+    currentAssets: AddAssetType[]
 }
-export const Wallet = ({asset,currentAssets}: WalletType) => {
+export const Wallet = React.memo(({asset, currentAssets}: WalletType) => {
     const [countDelete, setCountDelete] = useState<string>('')
     const [changeAsset, setChangeAsset] = useState<boolean>(false)
     const valueAssets = useSelector<AppStateType, CryptocurrencyListType[]>(state => state.cryptocurrencyList.dataAssets)
     const dispatch = useDispatch()
     const removeCountAssets = (e: ChangeEvent<HTMLInputElement>) => {
-        if (+e.currentTarget.value > -1){
+        if (+e.currentTarget.value > -1) {
             setCountDelete(e.currentTarget.value)
         }
     }
@@ -24,14 +24,14 @@ export const Wallet = ({asset,currentAssets}: WalletType) => {
     const removeAssetHandler = (assetId: string) => {
         const count = currentAssets.find(count => count.assetId === assetId)
         const assetValue = valueAssets.find((value) => {
-            if (value.id === assetId ){
-               return value.priceUsd
+            if (value.id === assetId) {
+                return value.priceUsd
             }
         })
         if (count && assetValue) {
             const assetRemove = {
-                assetId:assetId,
-                count:Number(countDelete),
+                assetId: assetId,
+                count: Number(countDelete),
                 price: Number(assetValue.priceUsd) * Number(countDelete)
             }
             if (asset.count < assetRemove.count) return
@@ -45,12 +45,12 @@ export const Wallet = ({asset,currentAssets}: WalletType) => {
     const changeAssetHandler = () => setChangeAsset(!changeAsset)
 
     return <div className="wallet">
-        <Button  onClick={changeAssetHandler} variant="primary">Change {asset.assetId}</Button>
-        {changeAsset ? <InputGroup  className="mb-3">
+        <Button onClick={changeAssetHandler} variant="primary">Change {asset.assetId}</Button>
+        {changeAsset ? <InputGroup className="mb-3">
                 <InputGroup.Text>{asset.assetId}</InputGroup.Text>
                 <InputGroup.Text>{asset.count}</InputGroup.Text>
                 <FormControl type="number" value={countDelete} onChange={removeCountAssets}/>
-                <Button variant="primary" onClick={() => removeAssetHandler(asset.assetId)}>delete</Button>
+                <Button variant="primary" onClick={() => removeAssetHandler(asset.assetId)}>sale</Button>
             </InputGroup>
             :
             <div className="wallet__block">
@@ -61,4 +61,4 @@ export const Wallet = ({asset,currentAssets}: WalletType) => {
         }
 
     </div>
-}
+})

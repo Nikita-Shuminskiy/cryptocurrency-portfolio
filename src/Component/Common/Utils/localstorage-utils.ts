@@ -4,7 +4,7 @@ import { AddAssetType } from '../../../Dal/Types';
 const checkingArrayAssets = (serializedState: string) => {
     const parsedState: AppStateType = JSON.parse(serializedState);
     const portfolio = parsedState.portfolio.portfolio.filter((asset: AddAssetType) => asset.count !== 0)
-    return {...parsedState, portfolio: {...parsedState.portfolio, portfolio: portfolio}}
+    return {...parsedState, portfolio: {...parsedState.portfolio, portfolio: portfolio, percent: 0, currentAssetSessions: 0 }}
 }
 
 export const loadState = () => {
@@ -19,10 +19,9 @@ export const loadState = () => {
         return undefined;
     }
 };
-export const saveState = (state: AppStateType) => {
+export const saveState = (state: any) => {
     try {
-        const stateCopy = {...state, portfolio: {...state.portfolio, percent: 0, currentAssetSessions: 0}}
-        const serializedState = JSON.stringify(stateCopy);
+        const serializedState = JSON.stringify(state);
         localStorage.setItem('portfolioAssets', serializedState);
     } catch (error) {
         return console.log(error)

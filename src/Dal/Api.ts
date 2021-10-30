@@ -14,7 +14,7 @@ export const api = {
         return createInstance.get<DataHistoryAssetsType>(`assets/${id}/history`, { params: { interval: 'd1' } })
     },
     topAssets(){
-        return createInstance.get<AssetsType>('https://api.coincap.io/v2/assets?limit=3')
+        return createInstance.get<AssetsType>('assets?limit=3')
     }
 }
 

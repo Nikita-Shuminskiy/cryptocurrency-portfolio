@@ -14,8 +14,8 @@ export const ModalForAssets = (props: ModalForAssetsType) => {
             setAssetsCount(e.currentTarget.value)
         }
     }
-    const onAddAssetsHandler = () => assetsCount && props.addAssetsHandler(Number(assetsCount))
-
+    const onAddAssetsHandler = () => +assetsCount !== 0 && props.addAssetsHandler(Number(assetsCount))
+    const currentValueAsset = (Number(props.assets.priceUsd) * Number(assetsCount)).toFixed(2)
     return (<Modal show={true}>
             <Modal.Header>
                 <Modal.Title>Add to portfolio</Modal.Title>
@@ -28,6 +28,7 @@ export const ModalForAssets = (props: ModalForAssetsType) => {
                 <div>
                     <InputGroup className="mb-3">
                         <FormControl type="number" value={assetsCount} onChange={onChangeAssets}/>
+                        <InputGroup.Text>${currentValueAsset}</InputGroup.Text>
                     </InputGroup>
                 </div>
             </Modal.Body>

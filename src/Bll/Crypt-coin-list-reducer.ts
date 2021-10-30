@@ -1,7 +1,7 @@
-import { api } from '../Dal/Api';
 import { CryptocurrencyListType, DataChartType } from '../Dal/Types';
 import { ActionsTypes, AppDispatchType } from '../Store/Store';
 import { setAppStatus } from './App-reducer';
+import { api } from '../Dal/Api';
 
 const initialState = {
     dataAssets: [] as CryptocurrencyListType[],
@@ -30,42 +30,43 @@ export const setDataAssets = (data: CryptocurrencyListType[], timestamp: number)
 export const setDataChart = (data: DataChartType[]) => {
     return {type: 'CRYPT/SET-DATA-CHART', data} as const
 }
-export const setTopDataAssets = (data:  CryptocurrencyListType[]) => {
+export const setTopDataAssets = (data: CryptocurrencyListType[]) => {
     return {type: 'CRYPT/SET-TOP-DATA-ASSETS', data} as const
 }
+
 //thunk
-export const getDataAssetsTC = ()=> (dispatch:AppDispatchType) => {
+export const getDataAssetsTC = () => async (dispatch: AppDispatchType) => {
     dispatch(setAppStatus('loading'))
-    api.getAssets()
-        .then((res) => {
-            const {data, timestamp} = res.data
-            dispatch(setDataAssets(data, timestamp))
-            dispatch(setAppStatus('succeeded'))
-        }).catch((error) => {
+    try {
+        const response = await api.getAssets()
+        const {data, timestamp} = response.data
+        dispatch(setDataAssets(data, timestamp))
+        dispatch(setAppStatus('succeeded'))
+    } catch (e) {
         dispatch(setAppStatus('failed'))
-    })
+    }
 }
-export const getDataTopAssetsTC = ()=> (dispatch:AppDispatchType) => {
+export const getDataTopAssetsTC = () => async (dispatch: AppDispatchType) => {
     dispatch(setAppStatus('loading'))
-    api.topAssets()
-        .then((res) => {
-            const {data} = res.data
-            dispatch(setTopDataAssets(data))
-            dispatch(setAppStatus('succeeded'))
-        }).catch((error) => {
+    try {
+        const response = await api.topAssets()
+        const {data} = response.data
+        dispatch(setTopDataAssets(data))
+        dispatch(setAppStatus('succeeded'))
+    } catch (e) {
         dispatch(setAppStatus('failed'))
-    })
+    }
 }
-export const getChartDataTC = (id:string)=> (dispatch:AppDispatchType) => {
+export const getChartDataTC = (id: string) => async (dispatch: AppDispatchType) => {
     dispatch(setAppStatus('loading'))
-    api.getChartData(id)
-        .then((res) => {
-            const {data} = res.data
-            dispatch(setDataChart(data))
-            dispatch(setAppStatus('succeeded'))
-        }).catch((error) => {
+    try {
+        const response = await  api.getChartData(id)
+        const {data} = response.data
+        dispatch(setDataChart(data))
+        dispatch(setAppStatus('succeeded'))
+    } catch (e) {
         dispatch(setAppStatus('failed'))
-    })
+    }
 }
 
 //types

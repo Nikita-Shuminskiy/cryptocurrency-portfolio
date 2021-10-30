@@ -11,6 +11,7 @@ export const Portfolio = () => {
     const currentAssets = useSelector<AppStateType, AddAssetType[]>(state => state.portfolio.portfolio)
     const history = useHistory();
     const goBackHandler = () => history.goBack()
+    const checkingCurrentAsset = currentAssets.filter(asset => asset.count !== 0)
 
     return <Modal show={true}>
         <Modal.Header>
@@ -18,7 +19,8 @@ export const Portfolio = () => {
             <button onClick={goBackHandler} type="button" className="btn btn-outline-primary">Go back</button>
         </Modal.Header>
         <Modal.Body>
-            {currentAssets.filter(asset => asset.count !== 0).map((asset) => {
+            {!checkingCurrentAsset.length && <div>Your Wallet Is Empty</div>}
+            {checkingCurrentAsset.map((asset) => {
                 return <Wallet currentAssets={currentAssets} key={asset.assetId} asset={asset}/>
             })}
         </Modal.Body>
