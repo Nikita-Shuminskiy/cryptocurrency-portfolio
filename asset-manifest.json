@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/cryptocurrency-portfolio/static/css/main.5935b205.chunk.css",
-    "main.js": "/cryptocurrency-portfolio/static/js/main.68307d4c.chunk.js",
-    "main.js.map": "/cryptocurrency-portfolio/static/js/main.68307d4c.chunk.js.map",
-    "runtime-main.js": "/cryptocurrency-portfolio/static/js/runtime-main.61d283b2.js",
-    "runtime-main.js.map": "/cryptocurrency-portfolio/static/js/runtime-main.61d283b2.js.map",
+    "main.css": "/cryptocurrency-portfolio/static/css/main.222d81d2.chunk.css",
+    "main.js": "/cryptocurrency-portfolio/static/js/main.a4374fb7.chunk.js",
+    "main.js.map": "/cryptocurrency-portfolio/static/js/main.a4374fb7.chunk.js.map",
+    "runtime-main.js": "/cryptocurrency-portfolio/static/js/runtime-main.6992ff91.js",
+    "runtime-main.js.map": "/cryptocurrency-portfolio/static/js/runtime-main.6992ff91.js.map",
     "static/css/2.0a9ec390.chunk.css": "/cryptocurrency-portfolio/static/css/2.0a9ec390.chunk.css",
-    "static/js/2.cd1f03c4.chunk.js": "/cryptocurrency-portfolio/static/js/2.cd1f03c4.chunk.js",
-    "static/js/2.cd1f03c4.chunk.js.map": "/cryptocurrency-portfolio/static/js/2.cd1f03c4.chunk.js.map",
-    "static/js/3.73ac83a4.chunk.js": "/cryptocurrency-portfolio/static/js/3.73ac83a4.chunk.js",
-    "static/js/3.73ac83a4.chunk.js.map": "/cryptocurrency-portfolio/static/js/3.73ac83a4.chunk.js.map",
+    "static/js/2.bc82e14a.chunk.js": "/cryptocurrency-portfolio/static/js/2.bc82e14a.chunk.js",
+    "static/js/2.bc82e14a.chunk.js.map": "/cryptocurrency-portfolio/static/js/2.bc82e14a.chunk.js.map",
+    "static/js/3.f88824d4.chunk.js": "/cryptocurrency-portfolio/static/js/3.f88824d4.chunk.js",
+    "static/js/3.f88824d4.chunk.js.map": "/cryptocurrency-portfolio/static/js/3.f88824d4.chunk.js.map",
     "index.html": "/cryptocurrency-portfolio/index.html",
     "static/css/2.0a9ec390.chunk.css.map": "/cryptocurrency-portfolio/static/css/2.0a9ec390.chunk.css.map",
-    "static/css/main.5935b205.chunk.css.map": "/cryptocurrency-portfolio/static/css/main.5935b205.chunk.css.map",
-    "static/js/2.cd1f03c4.chunk.js.LICENSE.txt": "/cryptocurrency-portfolio/static/js/2.cd1f03c4.chunk.js.LICENSE.txt"
+    "static/css/main.222d81d2.chunk.css.map": "/cryptocurrency-portfolio/static/css/main.222d81d2.chunk.css.map",
+    "static/js/2.bc82e14a.chunk.js.LICENSE.txt": "/cryptocurrency-portfolio/static/js/2.bc82e14a.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.61d283b2.js",
+    "static/js/runtime-main.6992ff91.js",
     "static/css/2.0a9ec390.chunk.css",
-    "static/js/2.cd1f03c4.chunk.js",
-    "static/css/main.5935b205.chunk.css",
-    "static/js/main.68307d4c.chunk.js"
+    "static/js/2.bc82e14a.chunk.js",
+    "static/css/main.222d81d2.chunk.css",
+    "static/js/main.a4374fb7.chunk.js"
   ]
 }
