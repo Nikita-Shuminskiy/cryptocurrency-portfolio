@@ -1,11 +1,12 @@
 import React from 'react';
-import './Portfolio.scss'
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { AppStateType } from '../../Store/Store';
 import { Modal } from 'react-bootstrap';
-import { AddAssetType } from '../../Dal/Types';
+import './Portfolio.scss'
 import { Wallet } from './Wallet/Wallet';
+import { AppStateType } from '../../Store/Store';
+import { AddAssetType } from '../../Dal/Types';
+
 
 export const Portfolio = () => {
     const currentAssets = useSelector<AppStateType, AddAssetType[]>(state => state.portfolio.portfolio)
@@ -21,7 +22,7 @@ export const Portfolio = () => {
         <Modal.Body>
             {!checkingCurrentAsset.length && <div>Your Wallet Is Empty</div>}
             {checkingCurrentAsset.map((asset) => {
-                return <Wallet currentAssets={currentAssets} key={asset.assetId} asset={asset}/>
+                return <Wallet key={asset.assetId} asset={asset}/>
             })}
         </Modal.Body>
         <Modal.Footer>

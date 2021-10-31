@@ -1,23 +1,25 @@
 import React, { useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { CurrencyDetails } from './CurrenceDetails/CurrencyDetails';
 import './CurrencyInfo.scss'
 import { AppStateType } from '../../../Store/Store';
 import { Charts } from '../../Common/Chart/Chart';
 import { CryptocurrencyInitType, getChartDataTC } from '../../../Bll/Crypt-coin-list-reducer';
 
 
+
 export const CurrencyInfo = () => {
     const {id} = useParams<{ id: string }>();
-    const data = useSelector<AppStateType, CryptocurrencyInitType>(state => state.cryptocurrencyList)
-    const dispatch = useDispatch()
     const history = useHistory();
-    const goBackHandler = () => {
-        history.goBack()
-    }
+    const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getChartDataTC(id))
     }, [dispatch, id])
+    const {totalAssetData, chartData} = useSelector<AppStateType, CryptocurrencyInitType>(state => state.cryptocurrencyList)
+
+    const goBackHandler = () => history.goBack()
+
     return (
         <div>
             <button onClick={goBackHandler} type="button" className="btn btn-outline-primary">Go back</button>
@@ -36,22 +38,15 @@ export const CurrencyInfo = () => {
                 </thead>
                 <tbody>
                 {
-                    data.dataAssets.filter(i => i.id === id).map((i) => {
-                        return <tr key={i.id}>
-                            <th scope="row">{i.rank}</th>
-                            <th>{i.name}</th>
-                            <th>${(+i.priceUsd).toFixed(5)}</th>
-                            <th>${(+i.marketCapUsd).toFixed(5)}</th>
-                            <th>${(+i.vwap24Hr).toFixed(2)}</th>
-                            <th>{(+i.supply).toFixed(5)}B</th>
-                            <th>{(+i.volumeUsd24Hr).toFixed(5)}B</th>
-                            <th>{(+i.changePercent24Hr).toFixed(2)}%</th>
-                        </tr>
+                    totalAssetData
+                        .filter(asset => asset.id === id)
+                        .map((asset) => {
+                        return <CurrencyDetails asset={asset} key={asset.id}/>
                     })
                 }
                 </tbody>
             </table>
-            <Charts data={data.chartData}/>
+            <Charts data={chartData}/>
         </div>
     );
 };

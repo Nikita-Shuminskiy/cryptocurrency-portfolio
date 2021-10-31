@@ -19,6 +19,7 @@ export const loadState = () => {
         return undefined;
     }
 };
+
 export const saveState = (state: any) => {
     try {
         const serializedState = JSON.stringify(state);

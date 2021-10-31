@@ -1,28 +1,28 @@
 import React from 'react';
 import './Paginator.scss'
+import { usePagination } from '../Hooks';
 
-type PaginatorType = {
-    currentPage: number
-    pageSize: number
-    totalCount: number
-    onPageChange: (page: number) => void
 
-}
-export const Paginator = (props: PaginatorType) => {
-    let pageCount = Math.ceil(props.totalCount / props.pageSize)
+export const Paginator = () => {
+    const pageSize = 10
+    const {
+        onPageChange,
+        totalCount,
+        pageCurrent,
+    } = usePagination({pageSize})
+    let pageCount = Math.ceil(totalCount / pageSize)
     const pages = []
     for (let i = 1; i <= pageCount; i++) {
         pages.push(i)
     }
-
     return <div className="paginator">
         {
             pages
                 .map(page => {
                     return <span
-                        className={props.currentPage === page ? 'paginator__selected' : 'paginator__unselected'}
+                        className={pageCurrent === page ? 'paginator__selected' : 'paginator__unselected'}
                         key={page}
-                        onClick={() => props.onPageChange(page)}>
+                        onClick={() => onPageChange(page)}>
                        {page}
                    </span>
                 })}

@@ -20,15 +20,15 @@ export const Assets = React.memo(({item}: AssetsType) => {
         return history.push(`/currency-info/${id}`)
     }
     const addAssetsHandler = (assetsCount: number) => {
-        const newAccount = {
+        const newAsset = {
             assetId: item.id,
             count: assetsCount,
             price: Number(item.priceUsd) * assetsCount
         }
-        dispatch(addAsset(newAccount))
+        dispatch(addAsset(newAsset))
         setShowModal(!showModal)
     }
-    const openModalPortfoliolHandler = () => {
+    const openModalPortfolioHandler = () => {
         setShowModal(true)
     }
 
@@ -40,7 +40,7 @@ export const Assets = React.memo(({item}: AssetsType) => {
                 <p>${(+item.priceUsd).toFixed(2)}</p>
                 <Button className="block_btn" onClick={() => openMoreInfo(item.id)} variant="outline-primary">More
                     info</Button>
-                <Button className="block_btn" onClick={openModalPortfoliolHandler} variant="outline-primary">Buy
+                <Button className="block_btn" onClick={openModalPortfolioHandler} variant="outline-primary">Buy
                     currency</Button>
             </div>
         </div>

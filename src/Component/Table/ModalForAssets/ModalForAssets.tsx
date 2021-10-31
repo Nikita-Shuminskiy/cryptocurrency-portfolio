@@ -7,23 +7,23 @@ type ModalForAssetsType = {
     showModal: (show: boolean) => void
     addAssetsHandler: (countAssets: number) => void
 }
-export const ModalForAssets = (props: ModalForAssetsType) => {
+export const ModalForAssets = ({assets,showModal,addAssetsHandler}:ModalForAssetsType) => {
     const [assetsCount, setAssetsCount] = useState<string>('')
     const onChangeAssets = (e: ChangeEvent<HTMLInputElement>) => {
-        if (Number(e.currentTarget.value) > -1) {
+        if (+e.currentTarget.value > -1) {
             setAssetsCount(e.currentTarget.value)
         }
     }
-    const onAddAssetsHandler = () => +assetsCount !== 0 && props.addAssetsHandler(Number(assetsCount))
-    const currentValueAsset = (Number(props.assets.priceUsd) * Number(assetsCount)).toFixed(2)
+    const onAddAssetsHandler = () => +assetsCount !== 0 && addAssetsHandler(Number(assetsCount))
+    const currentValueAsset = (Number(assets.priceUsd) * Number(assetsCount)).toFixed(2)
     return (<Modal show={true}>
             <Modal.Header>
                 <Modal.Title>Add to portfolio</Modal.Title>
-                <Button onClick={() => props.showModal(false)} variant="primary">close</Button>
+                <Button onClick={() => showModal(false)} variant="primary">close</Button>
             </Modal.Header>
             <Modal.Body>
                 <div>
-                    Do you want to add <strong>{props.assets.name}</strong> to your portfolio
+                    Do you want to add <strong>{assets.name}</strong> to your portfolio
                 </div>
                 <div>
                     <InputGroup className="mb-3">

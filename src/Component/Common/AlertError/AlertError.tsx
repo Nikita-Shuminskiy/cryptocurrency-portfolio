@@ -2,15 +2,11 @@ import React, { useState } from 'react';
 import { Alert, Button } from 'react-bootstrap';
 import './AlertError.scss'
 
-type AlertErrorType = {
-
-}
-export const AlertError = (props:AlertErrorType ) => {
+export const AlertError = () => {
     const [show, setShow] = useState(true);
     const closeAlert = () => {
         setShow(false)
     }
-
     return (
         <>
                     <Alert className="alert" show={show} variant="primary">

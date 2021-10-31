@@ -1,3 +1,3 @@
-export const formatPricer = (price: number | string, countAfterDot: number) => {
+export const formatPricer = (price: any, countAfterDot: number) => {
     return Number(price).toFixed(countAfterDot)
 }

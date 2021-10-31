@@ -1,9 +1,15 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import { Dispatch } from 'react';
 import ThunkMiddleware, { ThunkAction } from 'redux-thunk'
-import { cryptocurrencyReducer, setDataAssets, setDataChart, setTopDataAssets } from '../Bll/Crypt-coin-list-reducer';
 import {
-    addAsset, changePage,
+    cryptocurrencyReducer,
+    setDataAssetsPortion,
+    setTotalAssetData,
+    setDataChart,
+    setTopDataAssets
+} from '../Bll/Crypt-coin-list-reducer';
+import {
+    addAsset, changeUsersCurrentPage,
     portfolioReducer,
     removeAssetPortfolio,
     setAssets,
@@ -28,7 +34,7 @@ store.subscribe(() => {
 
 //type
 export type ActionsTypes =
-    | ReturnType<typeof setDataAssets>
+    | ReturnType<typeof setDataAssetsPortion>
     | ReturnType<typeof setDataChart>
     | ReturnType<typeof setTopDataAssets>
     | ReturnType<typeof setAppStatus>
@@ -37,7 +43,9 @@ export type ActionsTypes =
     | ReturnType<typeof removeAssetPortfolio>
     | ReturnType<typeof setAssets>
     | ReturnType<typeof updateCurrAssetPercent>
-    | ReturnType<typeof changePage>
+    | ReturnType<typeof changeUsersCurrentPage>
+    | ReturnType<typeof changeUsersCurrentPage>
+    | ReturnType<typeof setTotalAssetData>
 
 export type AppStateType = ReturnType<typeof rootReducer>
 export type AppDispatchType = Dispatch<ActionsTypes>

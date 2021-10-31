@@ -10,7 +10,7 @@ export const api = {
     getAssets() {
         return createInstance.get<AssetsType>('assets')
     },
-    getChartData(id:string){
+    getChartAssetData(id:string){
         return createInstance.get<DataHistoryAssetsType>(`assets/${id}/history`, { params: { interval: 'd1' } })
     },
     topAssets(){

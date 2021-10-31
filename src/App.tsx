@@ -1,15 +1,14 @@
 import React from 'react';
-import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Redirect, Route, Switch } from 'react-router-dom';
+import './App.scss';
 import { Table } from './Component/Table/Table';
 import { Header } from './Component/Header/Header';
 import { Portfolio } from './Component/Portfolio/Portfolio';
-import { Redirect, Route, Switch } from 'react-router-dom';
 import { CurrencyInfo } from './Component/Table/CurrencyInfo/CurrencyInfo';
 
 
 const App = () => {
-
     return (
         <div className="container">
             <Header/>
