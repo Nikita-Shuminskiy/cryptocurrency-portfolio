@@ -23,11 +23,7 @@ export const Wallet = React.memo(({asset, currentAssets}: WalletType) => {
 
     const removeAssetHandler = (assetId: string) => {
         const count = currentAssets.find(count => count.assetId === assetId)
-        const assetValue = valueAssets.find((value) => {
-            if (value.id === assetId) {
-                return value.priceUsd
-            }
-        })
+        const assetValue = valueAssets.find((value) => value.id === assetId && value.priceUsd)
         if (count && assetValue) {
             const assetRemove = {
                 assetId: assetId,

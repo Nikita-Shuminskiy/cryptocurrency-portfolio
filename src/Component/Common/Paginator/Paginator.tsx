@@ -14,6 +14,7 @@ export const Paginator = (props: PaginatorType) => {
     for (let i = 1; i <= pageCount; i++) {
         pages.push(i)
     }
+
     return <div className="paginator">
         {
             pages

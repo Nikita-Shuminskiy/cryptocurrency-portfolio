@@ -5,7 +5,8 @@ import { ActionsTypes } from '../Store/Store';
 const initialState = {
     portfolio: [] as AddAssetType[],
     percent: 0,
-    currentAssetSessions: 0
+    currentAssetSessions: 0,
+    currentPage:1
 }
 
 export const portfolioReducer = (state = initialState, action: ActionsTypes): PortfolioInitType => {
@@ -56,6 +57,8 @@ export const portfolioReducer = (state = initialState, action: ActionsTypes): Po
                 })
 
             }
+        case 'PORTFOLIO/CHANGE-PAGE':
+            return {...state, currentPage: action.page}
         default: {
             return state
         }
@@ -71,6 +74,9 @@ export const updateCurrAssetPercent = (asset: AddAssetType) => {
 }
 export const setAssets = (assets: AddAssetType[]) => {
     return {type: 'PORTFOLIO/SET-ASSETS', assets} as const
+}
+export const changePage = (page: number) => {
+    return {type: 'PORTFOLIO/CHANGE-PAGE', page} as const
 }
 export const removeAssetPortfolio = (asset: AddAssetType) => {
     return {type: 'PORTFOLIO/REMOVE-ASSET', asset} as const

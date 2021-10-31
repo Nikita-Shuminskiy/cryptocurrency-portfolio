@@ -3,7 +3,7 @@ import { Dispatch } from 'react';
 import ThunkMiddleware, { ThunkAction } from 'redux-thunk'
 import { cryptocurrencyReducer, setDataAssets, setDataChart, setTopDataAssets } from '../Bll/Crypt-coin-list-reducer';
 import {
-    addAsset,
+    addAsset, changePage,
     portfolioReducer,
     removeAssetPortfolio,
     setAssets,
@@ -37,6 +37,7 @@ export type ActionsTypes =
     | ReturnType<typeof removeAssetPortfolio>
     | ReturnType<typeof setAssets>
     | ReturnType<typeof updateCurrAssetPercent>
+    | ReturnType<typeof changePage>
 
 export type AppStateType = ReturnType<typeof rootReducer>
 export type AppDispatchType = Dispatch<ActionsTypes>

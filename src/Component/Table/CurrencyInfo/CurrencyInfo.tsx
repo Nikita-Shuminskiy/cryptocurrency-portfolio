@@ -38,14 +38,14 @@ export const CurrencyInfo = () => {
                 {
                     data.dataAssets.filter(i => i.id === id).map((i) => {
                         return <tr key={i.id}>
-                            <td scope="row">{i.rank}</td>
-                            <td>{i.name}</td>
-                            <td>${(+i.priceUsd).toFixed(5)}</td>
-                            <td>${(+i.marketCapUsd).toFixed(5)}</td>
-                            <td>${(+i.vwap24Hr).toFixed(2)}</td>
-                            <td>{(+i.supply).toFixed(5)}B</td>
-                            <td>{(+i.volumeUsd24Hr).toFixed(5)}B</td>
-                            <td>{(+i.changePercent24Hr).toFixed(2)}%</td>
+                            <th scope="row">{i.rank}</th>
+                            <th>{i.name}</th>
+                            <th>${(+i.priceUsd).toFixed(5)}</th>
+                            <th>${(+i.marketCapUsd).toFixed(5)}</th>
+                            <th>${(+i.vwap24Hr).toFixed(2)}</th>
+                            <th>{(+i.supply).toFixed(5)}B</th>
+                            <th>{(+i.volumeUsd24Hr).toFixed(5)}B</th>
+                            <th>{(+i.changePercent24Hr).toFixed(2)}%</th>
                         </tr>
                     })
                 }

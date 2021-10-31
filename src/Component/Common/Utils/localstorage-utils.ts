@@ -24,6 +24,6 @@ export const saveState = (state: any) => {
         const serializedState = JSON.stringify(state);
         localStorage.setItem('portfolioAssets', serializedState);
     } catch (error) {
-        return console.log(error)
+        return undefined
     }
 };
