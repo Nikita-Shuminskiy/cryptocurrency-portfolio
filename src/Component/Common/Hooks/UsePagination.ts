@@ -7,7 +7,6 @@ import { getDataAssetsTotalTC, getDataAssetsPortionTC } from '../../../Bll/Crypt
 type UsePaginationType = {
     pageSize: number;
 }
-
 type UsePagination = {
     onPageChange: (page: number) => void;
     totalCount: number;
@@ -16,13 +15,18 @@ type UsePagination = {
 
 export const usePagination = ({ pageSize }: UsePaginationType): UsePagination  => {
     const dispatch = useDispatch()
+
+
     const dataAssetsLength = useSelector<AppStateType, number>((state) => state.cryptocurrencyList.totalAssetData.length)
+
+
     const pageCurrent = useSelector<AppStateType, number>(state => state.portfolio.currentUserPage)
+
     useEffect(() => {
         dispatch(getDataAssetsTotalTC())
     }, [dispatch])
-    useEffect(() => {
 
+    useEffect(() => {
         dispatch(getDataAssetsPortionTC(pageSize, (pageCurrent - 1) * pageSize))
     }, [dispatch, pageCurrent, pageSize])
 

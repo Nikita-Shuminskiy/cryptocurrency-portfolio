@@ -19,10 +19,8 @@ export const cryptocurrencyReducer = (state = initialState, action: ActionsTypes
             return {...state, dataAssetsPortion: action.data}
         case 'CRYPT/SET-DATA-CHART':
             return {...state, chartData: action.data}
-        case  'CRYPT/SET-TOP-DATA-ASSETS':
-            return {...state, topAssets: action.data}
         case 'CRYPT/SET-ASSETS-TOTAL':
-            return {...state, totalAssetData: action.totalAssetData, timestamp: action.timestamp}
+            return {...state, totalAssetData: action.totalAssetData, timestamp: action.timestamp, topAssets: action.totalAssetData.slice(0,3)}
         default: {
             return state
         }
@@ -60,17 +58,6 @@ export const getDataAssetsTotalTC = () => async (dispatch: AppDispatchType) => {
         const response = await api.getAssets()
         const {data, timestamp} = response.data
         dispatch(setTotalAssetData(data, timestamp))
-        dispatch(setAppStatus('succeeded'))
-    } catch (e) {
-        dispatch(setAppStatus('failed'))
-    }
-}
-export const getDataTopAssetsTC = () => async (dispatch: AppDispatchType) => {
-    dispatch(setAppStatus('loading'))
-    try {
-        const response = await api.topAssets()
-        const {data} = response.data
-        dispatch(setTopDataAssets(data))
         dispatch(setAppStatus('succeeded'))
     } catch (e) {
         dispatch(setAppStatus('failed'))

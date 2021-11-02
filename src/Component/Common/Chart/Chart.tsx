@@ -16,9 +16,9 @@ export const Charts = ({data}: ChartsType) => {
             data: data && data.map(item => +item.priceUsd)
         }]
     }
-    return (<HighchartsReact
-            highcharts={Highcharts}
-            options={options}/>
-    );
+    return <>
+        <HighchartsReact highcharts={Highcharts} options={options}/>
+    </>
+
 };
 

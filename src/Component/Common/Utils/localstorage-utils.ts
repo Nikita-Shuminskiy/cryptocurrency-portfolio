@@ -20,7 +20,7 @@ export const loadState = () => {
     }
 };
 
-export const saveState = (state: any) => {
+export const saveState = (state: AppStateType) => {
     try {
         const serializedState = JSON.stringify(state);
         localStorage.setItem('portfolioAssets', serializedState);

@@ -4,12 +4,12 @@ import ThunkMiddleware, { ThunkAction } from 'redux-thunk'
 import {
     cryptocurrencyReducer,
     setDataAssetsPortion,
-    setTotalAssetData,
     setDataChart,
-    setTopDataAssets
+    setTotalAssetData
 } from '../Bll/Crypt-coin-list-reducer';
 import {
-    addAsset, changeUsersCurrentPage,
+    addAsset,
+    changeUsersCurrentPage,
     portfolioReducer,
     removeAssetPortfolio,
     setAssets,
@@ -28,6 +28,7 @@ export const store = createStore(rootReducer, loadState(), applyMiddleware(Thunk
 
 store.subscribe(() => {
     saveState({
+        ...store.getState(),
         portfolio: store.getState().portfolio,
     })
 })
@@ -36,7 +37,6 @@ store.subscribe(() => {
 export type ActionsTypes =
     | ReturnType<typeof setDataAssetsPortion>
     | ReturnType<typeof setDataChart>
-    | ReturnType<typeof setTopDataAssets>
     | ReturnType<typeof setAppStatus>
     | ReturnType<typeof setAppError>
     | ReturnType<typeof addAsset>
