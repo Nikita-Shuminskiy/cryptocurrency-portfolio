@@ -1,9 +1,12 @@
 .wallet{
-  &__block{
+  &__about{
     display: flex;
     justify-content: space-between;
     text-align: center;
     border: 2px solid lightskyblue;
     padding: 5px;
+  }
+  &__text{
+
   }
 }

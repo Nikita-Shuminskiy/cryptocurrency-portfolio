@@ -16,14 +16,13 @@ export const Paginator = () => {
             pages
                 .map(page => {
                     return <span
-                        className={pageCurrent === page ? 'paginator-active' : 'paginator-unActive'}
+                        className={pageCurrent === page ? 'paginator__span paginator__span_active' : 'paginator__span'}
                         key={page}
                         onClick={() => onPageChange(page)}>
                        {page}
                    </span>
                 })
         }
-
     </div>
 };
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import './Header.scss'
 import { NavLink } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { AppStateType } from '../../Store/Store';
 import { CryptocurrencyListType } from '../../Dal/Types';
 import { PortfolioInitType } from '../../Bll/Portfolio-reducer';
@@ -10,9 +10,8 @@ import { RequestStatusType } from '../../Bll/App-reducer';
 
 
 export const Header = () => {
-    const dispatch = useDispatch()
     const topAssets = useSelector<AppStateType, CryptocurrencyListType[]>(state => state.cryptocurrencyList.topAssets)
-    const status = useSelector<AppStateType, RequestStatusType>(state =>  state.app.status)
+    const status = useSelector<AppStateType, RequestStatusType>(state => state.app.status)
     const {
         portfolio,
         percent,
@@ -24,15 +23,15 @@ export const Header = () => {
     return <div className="header">
         {status === 'loading' && <Preloader/>}
         {topAssets.map((topAssets) => {
-            return  <div className="header__assets" key={topAssets.id}>
-                <p className="header__assets-text">{topAssets.name}</p>
-                <p className="header__assets-text">${(+topAssets.priceUsd).toFixed(2)}</p>
-                </div>
+            return <div className="assets" key={topAssets.id}>
+                <p className="assets__top-text">{topAssets.name}</p>
+                <p className="assets__top-text">${(+topAssets.priceUsd).toFixed(2)}</p>
+            </div>
         })}
-        <div className="header__totalCounts">
-            <p className="header__totalCounts-text">Wallet:{portfolioAmount}USD</p>
-            <p className="header__totalCounts-text">Session:{(currentAssetSessions).toFixed(2)}USD</p>
-            <p className="header__totalCounts-text">{percent !== Infinity && percent.toFixed(3)}% </p>
+        <div className="top-active">
+            <p className="top-active__text ">Wallet:{portfolioAmount}USD</p>
+            <p className="top-active__text ">Session:{(currentAssetSessions).toFixed(2)}USD</p>
+            <p className="top-active__text ">{percent !== Infinity && percent.toFixed(3)}%</p>
         </div>
         <NavLink className="header__link" to={'/portfolio'}> My Portfolio</NavLink>
     </div>

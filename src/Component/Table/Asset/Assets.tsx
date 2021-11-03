@@ -32,18 +32,18 @@ export const Assets = React.memo(({item}: AssetsType) => {
         setShowModal(true)
     }
 
-    return (<div className="main__body">
-            {showModal && <ModalForAssets assets={item} addAssetsHandler={addAssetsHandler} showModal={setShowModal}/>}
-            <div className="main__body__block">
-                <p>{item.rank}</p>
-                <p>{item.name}</p>
-                <p>${(+item.priceUsd).toFixed(2)}</p>
-                <Button className="block_btn" onClick={() => openMoreInfo(item.id)} variant="outline-primary">More
-                    info</Button>
-                <Button className="block_btn" onClick={openModalPortfolioHandler} variant="outline-primary">Buy
-                    currency</Button>
-            </div>
+    return <>
+        {showModal && <ModalForAssets assets={item} addAssetsHandler={addAssetsHandler} showModal={setShowModal}/>}
+        <div className="table-assets__item">
+            <p className="table-assets__item_text">{item.rank}</p>
+            <p className="table-assets__item_text">{item.name}</p>
+            <p className="table-assets__item_text">${(+item.priceUsd).toFixed(2)}</p>
+            <Button onClick={() => openMoreInfo(item.id)} variant="outline-primary">More
+                info</Button>
+            <Button onClick={openModalPortfolioHandler} variant="outline-primary">Buy
+                currency</Button>
         </div>
-    );
+    </>
+
 })
 

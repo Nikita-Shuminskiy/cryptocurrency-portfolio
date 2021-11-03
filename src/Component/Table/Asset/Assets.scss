@@ -1,11 +1,12 @@
-.main{
-  box-shadow: 1px 4px 53px 46px rgba(1, 63, 111, 0.22);
-&__body{
-  &__block{
+.table-assets{
+  &__item{
     display: grid;
     grid-template-columns: repeat(5,1fr);
     justify-items: center;
-    align-items: baseline
+    align-items: center;
+    padding: 5px;
+    &_text{
+      font-weight: bolder;
+    }
   }
-}
 }

@@ -22,12 +22,16 @@ export const Table = () => {
             <p className="main__header-text">Rank</p>
             <p className="main__header-text">Price</p>
         </div>
-        {
-            status === 'loading' ? <Preloader/>
-                :
-                totalAssetData.map((asset) => {
-                    return <Assets key={asset.id} item={asset}/>
-                })
-        }
+        <div className="table-assets__body">
+
+            {
+                status === 'loading' ? <Preloader/>
+                    :
+                    totalAssetData.map((asset) => {
+                        return <Assets key={asset.id} item={asset}/>
+                    })
+            }
+        </div>
+         <Paginator/>
     </div>
 }
