@@ -2,8 +2,8 @@ import React, { ChangeEvent, useState } from 'react';
 import { Button, FormControl, InputGroup } from 'react-bootstrap';
 import { removeAssetPortfolio, updateCurrAssetPercent } from '../../../../Bll/Portfolio-reducer';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppStateType } from '../../../../Store/Store';
 import { CryptocurrencyListType } from '../../../../Dal/Types';
+import { AppStateType } from '../../../../Bll/Store/Store';
 
 type ChangeWalletType = {
     assetId: string
@@ -20,7 +20,6 @@ export const ChangeWallet = React.memo(({assetId, count, setChangeAsset}: Change
         }
     }
     const removeAssetHandler = (assetId: string) => {
-        debugger
         const assetValue = totalAssetData.find((value) => value.id === assetId && value.priceUsd)
         if (assetValue) {
             const assetRemove = {

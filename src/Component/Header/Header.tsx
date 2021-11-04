@@ -2,11 +2,12 @@ import React from 'react';
 import './Header.scss'
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { AppStateType } from '../../Store/Store';
-import { CryptocurrencyListType } from '../../Dal/Types';
+import { AddAssetType, CryptocurrencyListType } from '../../Dal/Types';
 import { PortfolioInitType } from '../../Bll/Portfolio-reducer';
 import { Preloader } from '../Common/Preloader/Preloader';
 import { RequestStatusType } from '../../Bll/App-reducer';
+import { AppStateType } from '../../Bll/Store/Store';
+import { walletCalculation } from '../Common/Helpers/Helpers';
 
 
 export const Header = () => {
@@ -17,13 +18,14 @@ export const Header = () => {
         percent,
         currentAssetSessions
     } = useSelector<AppStateType, PortfolioInitType>(state => state.portfolio)
-    const portfolioAmount = portfolio && portfolio.reduce((acc, curr) =>
-        acc + Number(curr.price), 0).toFixed(2)
+
+
+    const portfolioAmount =  portfolio && walletCalculation(portfolio)
 
     return <div className="header">
-        {status === 'loading' && <Preloader/>}
-        {topAssets.map((topAssets) => {
-            return <div className="assets" key={topAssets.id}>
+                {status === 'loading' && <Preloader/>}
+                {topAssets.map((topAssets) => {
+                    return <div className="assets" key={topAssets.id}>
                 <p className="assets__top-text">{topAssets.name}</p>
                 <p className="assets__top-text">${(+topAssets.priceUsd).toFixed(2)}</p>
             </div>
@@ -36,3 +38,5 @@ export const Header = () => {
         <NavLink className="header__link" to={'/portfolio'}> My Portfolio</NavLink>
     </div>
 }
+
+

@@ -1,15 +1,15 @@
 import { AddAssetType } from '../Dal/Types';
-import { ActionsTypes } from '../Store/Store';
+import { ActionsTypes } from './Store/Store';
 
 
 const initialState = {
     portfolio: [] as AddAssetType[],
     percent: 0,
     currentAssetSessions: 0,
-    currentUserPage:1
+    currentUserPage: 1
 }
 
-export const portfolioReducer = (state = initialState, action: ActionsTypes): PortfolioInitType => {
+export const portfolioReducer = (state = initialState, action: ActionsPortfolioTypes): PortfolioInitType => {
     switch (action.type) {
         case 'PORTFOLIO/SET-ASSETS':
             return {...state, portfolio: [...state.portfolio, ...action.assets]}
@@ -63,7 +63,6 @@ export const portfolioReducer = (state = initialState, action: ActionsTypes): Po
         }
     }
 }
-
 //action
 export const addAsset = (asset: AddAssetType) => {
     return {type: 'PORTFOLIO/ADD-ASSET', asset} as const
@@ -75,12 +74,16 @@ export const setAssets = (assets: AddAssetType[]) => {
     return {type: 'PORTFOLIO/SET-ASSETS', assets} as const
 }
 export const changeUsersCurrentPage = (currentPage: number) => {
-    return {type: 'PORTFOLIO/CHANGE-PAGE',  currentPage} as const
+    return {type: 'PORTFOLIO/CHANGE-PAGE', currentPage} as const
 }
 export const removeAssetPortfolio = (asset: AddAssetType) => {
     return {type: 'PORTFOLIO/REMOVE-ASSET', asset} as const
 }
-
 //types
 export type PortfolioInitType = typeof initialState
-
+export type ActionsPortfolioTypes =
+    | ReturnType<typeof addAsset>
+    | ReturnType<typeof removeAssetPortfolio>
+    | ReturnType<typeof setAssets>
+    | ReturnType<typeof updateCurrAssetPercent>
+    | ReturnType<typeof changeUsersCurrentPage>

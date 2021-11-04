@@ -4,15 +4,18 @@ import { useSelector } from 'react-redux';
 import { Modal } from 'react-bootstrap';
 import './Portfolio.scss'
 import { Wallet } from './Wallet/Wallet';
-import { AppStateType } from '../../Store/Store';
+import { filteringArrayAssets } from '../Common/Helpers/Helpers';
 import { AddAssetType } from '../../Dal/Types';
+import { AppStateType } from '../../Bll/Store/Store';
+
 
 
 export const Portfolio = () => {
     const currentAssets = useSelector<AppStateType, AddAssetType[]>(state => state.portfolio.portfolio)
     const history = useHistory();
     const goBackHandler = () => history.goBack()
-    const checkingCurrentAsset = currentAssets.filter(asset => asset.count !== 0)
+
+    const checkingCurrentAsset = filteringArrayAssets(currentAssets)
 
     return <Modal show={true}>
         <Modal.Header>

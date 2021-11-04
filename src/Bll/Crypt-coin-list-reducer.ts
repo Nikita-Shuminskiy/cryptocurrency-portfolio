@@ -1,7 +1,7 @@
 import { CryptocurrencyListType, DataChartType } from '../Dal/Types';
-import { ActionsTypes, AppDispatchType } from '../Store/Store';
 import { setAppStatus } from './App-reducer';
 import { api } from '../Dal/Api';
+import { ActionsTypes, AppDispatchType } from './Store/Store';
 
 const initialState = {
     totalAssetData: [] as CryptocurrencyListType[],
@@ -12,8 +12,7 @@ const initialState = {
 
 }
 
-
-export const cryptocurrencyReducer = (state = initialState, action: ActionsTypes): CryptocurrencyInitType => {
+export const cryptocurrencyReducer = (state = initialState, action: ActionsCryptoCurrencyTypes): CryptocurrencyInitType => {
     switch (action.type) {
         case 'CRYPT/SET-CURRENT-ASSETS-PORTION':
             return {...state, dataAssetsPortion: action.data}
@@ -77,3 +76,7 @@ export const getChartDataTC = (id: string) => async (dispatch: AppDispatchType) 
 
 //types
 export type CryptocurrencyInitType = typeof initialState
+export type ActionsCryptoCurrencyTypes =
+    | ReturnType<typeof setDataAssetsPortion>
+    | ReturnType<typeof setDataChart>
+    | ReturnType<typeof setTotalAssetData>

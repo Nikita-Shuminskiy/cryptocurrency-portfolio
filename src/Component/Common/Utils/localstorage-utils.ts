@@ -1,4 +1,4 @@
-import { AppStateType } from '../../../Store/Store';
+import { AppStateType } from '../../../Bll/Store/Store';
 import { AddAssetType } from '../../../Dal/Types';
 
 const checkingArrayAssets = (serializedState: string) => {

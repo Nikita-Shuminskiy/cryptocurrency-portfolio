@@ -12,7 +12,7 @@ export const AlertError = ({error}: AlertErrorType) => {
     return (
         <>
                     <Alert className="alert" show={show} variant="primary">
-                        <Alert.Heading>{error}</Alert.Heading>
+                        <Alert.Heading>{error ? error : 'Server error, reload the page'}</Alert.Heading>
                         <Button onClick={closeAlert} variant="outline-primary">
                             Close Alert!
                         </Button>

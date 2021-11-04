@@ -5,8 +5,10 @@ import { Provider } from 'react-redux';
 import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { store } from './Store/Store';
+import { store } from './Bll/Store/Store';
 
+
+//HashRouter for gitHub.io
 ReactDOM.render(
   <React.StrictMode>
    <HashRouter>

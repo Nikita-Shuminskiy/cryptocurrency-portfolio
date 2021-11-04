@@ -16,6 +16,7 @@ export const ModalForAssets = ({assets,showModal,addAssetsHandler}:ModalForAsset
     }
     const onAddAssetsHandler = () => +assetsCount !== 0 && addAssetsHandler(Number(assetsCount))
     const currentValueAsset = (Number(assets.priceUsd) * Number(assetsCount)).toFixed(2)
+
     return (<Modal show={true}>
             <Modal.Header>
                 <Modal.Title>Add to portfolio</Modal.Title>

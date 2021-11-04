@@ -3,9 +3,9 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { CurrencyDetails } from './CurrenceDetails/CurrencyDetails';
 import './CurrencyInfo.scss'
-import { AppStateType } from '../../../Store/Store';
 import { Charts } from '../../Common/Chart/Chart';
 import { CryptocurrencyInitType, getChartDataTC } from '../../../Bll/Crypt-coin-list-reducer';
+import { AppStateType } from '../../../Bll/Store/Store';
 
 
 
