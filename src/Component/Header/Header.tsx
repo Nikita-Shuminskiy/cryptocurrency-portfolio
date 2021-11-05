@@ -19,23 +19,22 @@ export const Header = () => {
         currentAssetSessions
     } = useSelector<AppStateType, PortfolioInitType>(state => state.portfolio)
 
-
     const portfolioAmount =  portfolio && walletCalculation(portfolio)
 
-    return <div className="header">
+    return <div className="header header__top">
                 {status === 'loading' && <Preloader/>}
                 {topAssets.map((topAssets) => {
-                    return <div className="assets" key={topAssets.id}>
-                <p className="assets__top-text">{topAssets.name}</p>
-                <p className="assets__top-text">${(+topAssets.priceUsd).toFixed(2)}</p>
+                    return <div className="header__assets" key={topAssets.id}>
+                <p className="header__text">{topAssets.name}</p>
+                <p className="header__text">${(+topAssets.priceUsd).toFixed(2)}</p>
             </div>
         })}
-        <div className="top-active">
-            <p className="top-active__text ">Wallet:{portfolioAmount}USD</p>
-            <p className="top-active__text ">Session:{(currentAssetSessions).toFixed(2)}USD</p>
-            <p className="top-active__text ">{percent !== Infinity && percent.toFixed(3)}%</p>
+        <div className="header__wallet">
+            <p className="header__text">Wallet:{portfolioAmount}USD</p>
+            <p className="header__text">Session:{(currentAssetSessions).toFixed(2)}USD</p>
+            <p className="header__text">{percent !== Infinity && percent.toFixed(3)}%</p>
         </div>
-        <NavLink className="header__link" to={'/portfolio'}> My Portfolio</NavLink>
+        <NavLink className="header__link " to={'/portfolio'}> My Portfolio</NavLink>
     </div>
 }
 

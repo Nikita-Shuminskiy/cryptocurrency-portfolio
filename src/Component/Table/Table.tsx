@@ -13,7 +13,6 @@ export const Table = () => {
     const status = useSelector<AppStateType, RequestStatusType>(state => state.app.status)
     const totalAssetData = useSelector<AppStateType, CryptocurrencyListType[]>((state) => state.cryptocurrencyList.dataAssetsPortion)
     const errorReqest = 'The server is overloaded, try again later'
-
     return <div className="table-assets">
         {status === 'failed' && <AlertError error={errorReqest}/>}
         <div className="table-assets__header">

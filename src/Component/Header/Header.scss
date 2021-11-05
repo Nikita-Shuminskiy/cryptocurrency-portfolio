@@ -1,9 +1,20 @@
 .header {
-  background: linear-gradient(to right, rgb(63, 81, 181), rgb(100, 181, 246)) rgb(255, 255, 255);
-  display: flex;
-  justify-content: space-around;
-  text-align: center;
-  align-items: center;
+  &__top{
+    background: linear-gradient(to right, rgb(63, 81, 181), rgb(100, 181, 246)) rgb(255, 255, 255);
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  &__text{
+    color: white;
+    font-weight: bold;
+  }
+  &__wallet{
+    border: 2px solid white;
+    padding: 5px;
+  }
   &__link {
     color: white;
     text-decoration: none;
@@ -14,20 +25,4 @@
     }
   }
 }
-.top-active{
-  display: inline-block;
-  justify-content: flex-end;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  &__text{
-    color: white;
-    font-weight: bold;
-  }
-}
-.assets {
-  &__top-text{
-    color: white;
-    font-weight: bold;
-  }
 
-}

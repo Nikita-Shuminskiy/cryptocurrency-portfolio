@@ -1,5 +1,7 @@
 .alert {
-  position: absolute;
-  left: 34%;
-  width: 31%;
+  &__message{
+    position: absolute;
+    left: 34%;
+    width: 31%;
+  }
 }

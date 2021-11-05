@@ -1,14 +1,12 @@
 .table-assets {
-  text-align: center;
   box-shadow: 1px 4px 53px 46px rgba(1, 63, 111, 0.22);
-
+  text-align: center;
   &__header {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     justify-items: center;
     border-bottom: 1px solid gray;
   }
-
   &__text {
     color: black;
     font-weight: bold;
