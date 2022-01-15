@@ -1,12 +1,10 @@
 .header {
-  &__top{
-    background: linear-gradient(to right, rgb(63, 81, 181), rgb(100, 181, 246)) rgb(255, 255, 255);
-    display: flex;
-    justify-content: space-around;
-    text-align: center;
-    align-items: center;
-    flex-wrap: wrap;
-  }
+  background: linear-gradient(to right, rgb(63, 81, 181), rgb(100, 181, 246)) rgb(255, 255, 255);
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  align-items: center;
+  flex-wrap: wrap;
   &__text{
     color: white;
     font-weight: bold;

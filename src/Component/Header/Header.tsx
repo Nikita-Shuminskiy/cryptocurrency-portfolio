@@ -21,7 +21,7 @@ export const Header = () => {
 
     const portfolioAmount =  portfolio && walletCalculation(portfolio)
 
-    return <div className="header header__top">
+    return <div className="header">
                 {status === 'loading' && <Preloader/>}
                 {topAssets.map((topAssets) => {
                     return <div className="header__assets" key={topAssets.id}>
