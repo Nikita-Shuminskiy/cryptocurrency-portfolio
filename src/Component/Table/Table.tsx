@@ -21,6 +21,7 @@ export const Table = () => {
             <p className="table-assets__text">Price</p>
         </div>
         <div className="table-assets__body">
+            <input type="text"/>
             {
                 status === 'loading' ? <Preloader/>
                     :

@@ -35,12 +35,9 @@ export const setTotalAssetData = (totalAssetData: CryptocurrencyListType[], time
 export const setDataChart = (data: DataChartType[]) => {
     return {type: 'CRYPT/SET-DATA-CHART', data} as const
 }
-export const setTopDataAssets = (data: CryptocurrencyListType[]) => {
-    return {type: 'CRYPT/SET-TOP-DATA-ASSETS', data} as const
-}
 
 //thunk
-export const getDataAssetsTC = () => async (dispatch: AppDispatchType) => {
+export const getDataAssetsPortionTC = (limit: number, offset: number) => async (dispatch: AppDispatchType) => {
     dispatch(setAppStatus('loading'))
     try {
         const response = await api.getDataAssetsPortion(limit, offset)
@@ -51,6 +48,17 @@ export const getDataAssetsTC = () => async (dispatch: AppDispatchType) => {
         dispatch(setAppStatus('failed'))
     }
 }
+/*export const getDataAssetsPortionTC = (limit: number, offset: number) => async (dispatch: AppDispatchType) => {
+  dispatch(setAppStatus('loading'))
+  try {
+    const response = await api.getDataAssetsPortion(limit, offset)
+    const {data} = response.data
+    dispatch(setDataAssetsPortion(data))
+    dispatch(setAppStatus('succeeded'))
+  } catch (e) {
+    dispatch(setAppStatus('failed'))
+  }
+}*/
 export const getDataAssetsTotalTC = () => async (dispatch: AppDispatchType) => {
     dispatch(setAppStatus('loading'))
     try {
@@ -73,7 +81,6 @@ export const getChartDataTC = (id: string) => async (dispatch: AppDispatchType) 
         dispatch(setAppStatus('failed'))
     }
 }
-
 //types
 export type CryptocurrencyInitType = typeof initialState
 export type ActionsCryptoCurrencyTypes =

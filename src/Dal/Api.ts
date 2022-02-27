@@ -11,6 +11,9 @@ export const api = {
     getAssets() {
         return createInstance.get<AssetsType>('assets')
     },
+    getDataAssetsPortion(limit: number, offset: number) {
+        return createInstance.get<AssetsType>('assets', { params: { limit, offset } })
+    },
     getChartAssetData(id:string){
         return createInstance.get<DataHistoryAssetsType>(`assets/${id}/history`, { params: { interval: 'd1' } })
     },
