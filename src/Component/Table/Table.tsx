@@ -16,8 +16,8 @@ export const Table = () => {
   return <div className="table-assets">
     {status === 'failed' && <AlertError error={errorRequest}/>}
     <div className="table-assets__header">
-      <p className="table-assets__text">Rank</p>
-      <p className="table-assets__text">Rank</p>
+      <p className="table-assets__text">Number</p>
+      <p className="table-assets__text">Name</p>
       <p className="table-assets__text">Price</p>
     </div>
     <div className="table-assets__body">
