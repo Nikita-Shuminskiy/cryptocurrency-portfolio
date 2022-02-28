@@ -12,9 +12,9 @@ import './Table.scss'
 export const Table = () => {
   const status = useSelector<AppStateType, RequestStatusType>(state => state.app.status)
   const totalAssetData = useSelector<AppStateType, CryptocurrencyListType[]>((state) => state.cryptocurrencyList.dataAssetsPortion)
-  const errorReqest = 'The server is overloaded, try again later'
+  const errorRequest = 'The server is overloaded, try again later'
   return <div className="table-assets">
-    {status === 'failed' && <AlertError error={errorReqest}/>}
+    {status === 'failed' && <AlertError error={errorRequest}/>}
     <div className="table-assets__header">
       <p className="table-assets__text">Rank</p>
       <p className="table-assets__text">Rank</p>

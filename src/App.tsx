@@ -38,8 +38,8 @@ const App = () => {
       <Switch>
         <Route exact path={PATH.home} render={() => <Redirect to={'/table'}/>}/>
         {
-          allRoute.map((route) => {
-            return <Route path={route.patch} render={() => route.component}/>
+          allRoute.map((route, index) => {
+            return <Route key={`${route.patch}-${index}`} path={route.patch} render={() => route.component}/>
           })
         }
       </Switch>
