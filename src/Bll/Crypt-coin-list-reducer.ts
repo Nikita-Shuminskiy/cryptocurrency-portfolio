@@ -33,8 +33,15 @@ export const cryptocurrencyReducer = (state = initialState, action: ActionsCrypt
           return item
         }
       })
+      const newDateTotal = state.totalAssetData.filter((item) => {
+        if (action.listCrypt[item.id]) {
+          return item.priceUsd = action.listCrypt[item.id]
+        } else {
+          return item
+        }
+      })
       return {
-        ...state, dataAssetsPortion: newData, topAssets: newData.slice(0, 3),
+        ...state, dataAssetsPortion: newData, topAssets: newDateTotal.slice(0, 3),
       }
     default: {
       return state

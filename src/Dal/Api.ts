@@ -15,7 +15,7 @@ export const api = {
     return createInstance.get<AssetsType>('assets', {params: {limit, offset}})
   },
   getChartAssetData(id: string) {
-    return createInstance.get<DataHistoryAssetsType>(`assets/${id}/history`, {params: {interval: 'd1'}})
+    return createInstance.get<DataHistoryAssetsType>(`assets/${id}/history`, {params: {interval: 'h12'}})
   },
   topAssets() {
     return createInstance.get<AssetsType>('assets?limit=3')

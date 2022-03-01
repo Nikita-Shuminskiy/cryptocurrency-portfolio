@@ -1,7 +1,7 @@
 export type DataChartType = {
   priceUsd: string,
   time: number,
-  date: string
+  date?: string
 }
 export type DataHistoryAssetsType = {
   data: DataChartType[]

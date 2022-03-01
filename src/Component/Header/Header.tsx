@@ -6,7 +6,6 @@ import { PortfolioInitType } from '../../Bll/Portfolio-reducer';
 import { AppStateType } from '../../Bll/Store/Store';
 import { CryptocurrencyListType } from '../../Dal/Types';
 import { walletCalculation } from '../Common/Helpers/Helpers';
-import { Preloader } from '../Common/Preloader/Preloader';
 import './Header.scss'
 
 export const Header = () => {
@@ -21,7 +20,6 @@ export const Header = () => {
   const portfolioAmount = portfolio && walletCalculation(portfolio)
 
   return <div className="header">
-    {status === 'loading' && <Preloader/>}
     {topAssets.map((topAssets) => {
       return <div className="header__assets" key={topAssets.id}>
         <p className="header__text">{topAssets.name}</p>
