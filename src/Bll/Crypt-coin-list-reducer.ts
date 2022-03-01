@@ -25,6 +25,17 @@ export const cryptocurrencyReducer = (state = initialState, action: ActionsCrypt
         timestamp: action.timestamp,
         topAssets: action.totalAssetData.slice(0, 3),
       }
+    case "CRYPT/SET-CURRENCY-MONITOR":
+      const newData = state.dataAssetsPortion.filter((item) => {
+        if (action.listCrypt[item.id]) {
+          return item.priceUsd = action.listCrypt[item.id]
+        } else {
+          return item
+        }
+      })
+      return {
+        ...state, dataAssetsPortion: newData, topAssets: newData.slice(0, 3),
+      }
     default: {
       return state
     }
@@ -39,6 +50,9 @@ export const setTotalAssetData = (totalAssetData: CryptocurrencyListType[], time
 }
 export const setDataChart = (data: DataChartType[]) => {
   return {type: 'CRYPT/SET-DATA-CHART', data} as const
+}
+export const setCurrencyMonitor = (listCrypt: any) => {
+  return {type: 'CRYPT/SET-CURRENCY-MONITOR', listCrypt} as const
 }
 
 export const getDataAssetsPortionTC = (limit: number, offset: number) => async (dispatch: AppDispatchType) => {
@@ -91,3 +105,4 @@ export type ActionsCryptoCurrencyTypes =
   |ReturnType<typeof setDataAssetsPortion>
   |ReturnType<typeof setDataChart>
   |ReturnType<typeof setTotalAssetData>
+  |ReturnType<typeof setCurrencyMonitor>
