@@ -5,6 +5,7 @@ import { Header } from './Component/Header/Header';
 import { Portfolio } from './Component/Portfolio/Portfolio';
 import { CurrencyInfo } from './Component/Table/CurrencyInfo/CurrencyInfo';
 import { Table } from './Component/Table/Table';
+import './App.scss'
 
 export type AllPatchType = {
   patch: string
@@ -33,7 +34,7 @@ export const allRoute: Array<AllPatchType> = [
 
 const App = () => {
   return (
-    <div className="container">
+    <div className="container container__setting">
       <Header/>
       <Switch>
         <Route exact path={PATH.home} render={() => <Redirect to={'/table'}/>}/>

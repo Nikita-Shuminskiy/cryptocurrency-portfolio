@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getDataAssetsPortionTC, getDataAssetsTotalTC } from '../../../Bll/Crypt-coin-list-reducer';
-import { changeUsersCurrentPage } from '../../../Bll/Portfolio-reducer';
-import { AppStateType } from '../../../Bll/Store/Store';
+import { getDataAssetsPortionTC, getDataAssetsTotalTC } from '../../../../Bll/Crypt-coin-list-reducer';
+import { changeUsersCurrentPage } from '../../../../Bll/Portfolio-reducer';
+import { AppStateType } from '../../../../Bll/Store/Store';
 
 type UsePaginationType = {
   pageSize: number;

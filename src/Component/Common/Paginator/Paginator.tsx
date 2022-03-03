@@ -1,5 +1,5 @@
 import React from 'react';
-import { usePagination } from '../Hooks';
+import { usePagination } from '../Hooks/UsePagination';
 import './Paginator.scss'
 
 export const Paginator = () => {

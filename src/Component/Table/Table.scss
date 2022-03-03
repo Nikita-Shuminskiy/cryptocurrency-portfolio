@@ -1,8 +1,13 @@
 .table-assets {
-  box-shadow: 1px 4px 53px 46px rgba(1, 63, 111, 0.22);
+  -webkit-box-shadow: 0px 17px 20px 5px rgba(34, 60, 80, 0.26);
+  -moz-box-shadow: 0px 17px 20px 5px rgba(34, 60, 80, 0.26);
+  box-shadow: 0px 17px 20px 5px rgba(34, 60, 80, 0.26);
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
   text-align: center;
   min-height: 616px;
   background: lightcyan;
+  margin-top: 2%;
 
   &__header {
     display: grid;
@@ -13,15 +18,22 @@
   }
 
   &__text {
-    margin: 0;
     color: black;
     font-weight: bold;
+  }
+
+  &__input {
+    position: relative;
+    left: 79%;
+    bottom: 10%;
   }
 }
 
 .color-orange {
-  color: orange;
+  color: var(--color-extra-light-blue);
+  font-size: 16px;
 }
+
 .field-illumination {
   background: rgba(255, 165, 0, 0.42);
 }
