@@ -11,23 +11,19 @@ type PaginatorType = {
 }
 export const Paginator = ({searchedAndFilterResult}: PaginatorType) => {
   const pageSize = 10
-  const {onPageChange, totalCount, pageCurrent} = usePagination({pageSize})
+  const {onPageChange, pageCurrent} = usePagination({pageSize})
   const status = useSelector<AppStateType, RequestStatusType>(state => state.app.status)
-  let pageCount = Math.ceil(totalCount / pageSize)
-  const pages = []
-  for (let i = 1; i <= pageCount; i++) {
-    pages.push(i)
-  }
   return <div className="paginator">
     {
       status === 'loading' || !searchedAndFilterResult.length ? '' :
-        pages
-        .map(page => {
+        searchedAndFilterResult
+        .map((page, index) => {
+          if (index === 0) return
           return <span
-            className={pageCurrent === page ? 'page-link paginator__span_active' : 'page-link'}
-            key={page}
-            onClick={() => onPageChange(page)}>
-                       {page}
+            className={pageCurrent === index ? 'page-link paginator__span_active' : 'page-link'}
+            key={index}
+            onClick={() => onPageChange(index)}>
+                       {index}
                    </span>
         })
     }
