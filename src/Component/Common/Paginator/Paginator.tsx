@@ -2,10 +2,14 @@ import React from 'react';
 import { useSelector } from "react-redux";
 import { RequestStatusType } from '../../../Bll/App-reducer';
 import { AppStateType } from '../../../Bll/Store/Store';
+import { CryptocurrencyListType } from '../../../Dal/Types';
 import { usePagination } from '../Hooks/UsePagination';
 import './Paginator.scss'
 
-export const Paginator = () => {
+type PaginatorType = {
+  searchedAndFilterResult: CryptocurrencyListType[]
+}
+export const Paginator = ({searchedAndFilterResult}: PaginatorType) => {
   const pageSize = 10
   const {onPageChange, totalCount, pageCurrent} = usePagination({pageSize})
   const status = useSelector<AppStateType, RequestStatusType>(state => state.app.status)
@@ -16,11 +20,11 @@ export const Paginator = () => {
   }
   return <div className="paginator">
     {
-      status === 'loading' ? '' :
+      status === 'loading' || !searchedAndFilterResult.length ? '' :
         pages
         .map(page => {
           return <span
-            className={pageCurrent === page ? 'paginator__span paginator__span_active' : 'paginator__span'}
+            className={pageCurrent === page ? 'page-link paginator__span_active' : 'page-link'}
             key={page}
             onClick={() => onPageChange(page)}>
                        {page}

@@ -46,6 +46,6 @@ export const Table = () => {
           })
       }
     </div>
-    <Paginator/>
+    <Paginator searchedAndFilterResult={searchedAndFilterResult}/>
   </div>
 }
