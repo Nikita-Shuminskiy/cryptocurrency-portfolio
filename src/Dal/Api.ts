@@ -2,7 +2,7 @@ import axios from 'axios';
 import { AssetsType, DataHistoryAssetsType } from './Types'
 
 const settings = {
-  baseURL: process.env.REACT_APP_DOMAIN_API,
+  baseURL: 'https://api.coincap.io/v2/',
 }
 
 const createInstance = axios.create(settings)
